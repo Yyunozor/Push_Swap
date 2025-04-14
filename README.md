@@ -4,24 +4,44 @@
 
 This roadmap provides a detailed, step-by-step guide to completing the Push_Swap project at 42 Lausanne within 10 days, dedicating 10 hours daily. The objective is to efficiently sort numbers using two stacks with minimal operations, adhering strictly to the 42 Norm.
 
+## Project Structure
+```
 push_swap/
 ├── includes/
-│   └── push_swap.h
-├── libft_utils/     # previously utils/, contains copied Libft functions
-│   ├── ft_atoi.c
-│   ├── ft_strlen.c
-│   ├── ft_isdigit.c
-│   ├── ft_putstr_fd.c
-│   └── (other libft functions)
+│   └── push_swap.h              # Main header with all declarations and structures
+├── ft_printf2                   # Your custom libft and ft_printf functions
+│   ├── libft 
+│   │   ├── ft_atoi.c
+│   │   ├── ft_strlen.c
+│   │   ├── ft_isdigit.c
+│   │   ├── ft_putstr_fd.c
+│   │   └── ...
+│   └── ... (ft_printf and other related files)
 ├── src/
-│   ├── main.c
-│   ├── operations.c
-│   ├── parsing.c
-│   ├── sorting.c
-│   └── utils.c      # project-specific helper functions
-├── obj/
+│   ├── main.c                   # Entry point, argument handling
+│   ├── parsing/
+│   │   ├── input_validation.c   # Check for valid integers
+│   │   ├── parse_args.c         # Process command-line args
+│   │   └── stack_init.c         # Initialize stacks
+│   ├── operations/
+│   │   ├── push_ops.c           # pa, pb operations
+│   │   ├── swap_ops.c           # sa, sb, ss operations
+│   │   ├── rotate_ops.c         # ra, rb, rr operations
+│   │   └── reverse_rotate_ops.c # rra, rrb, rrr operations
+│   ├── algorithms/
+│   │   ├── small_sort.c         # Logic for sorting ≤5 numbers
+│   │   ├── radix_sort.c         # For larger datasets
+│   │   └── chunk_sort.c         # Alternative sorting strategy
+│   ├── utils/
+│   │   ├── stack_utils.c        # Stack creation, deletion, manipulation
+│   │   ├── sort_utils.c         # Helper functions for sorting
+│   │   └── array_utils.c        # Array manipulation helpers
+│   └── debug/
+│       └── visualizer.c         # Optional: for development debugging
+├── obj/                         # For object files
 ├── Makefile
 └── README.md
+```
 
 ---
 
