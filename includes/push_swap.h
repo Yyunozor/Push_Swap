@@ -6,7 +6,7 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 18:35:08 by anpayot           #+#    #+#             */
-/*   Updated: 2025/04/14 21:21:18 by anpayot          ###   ########.fr       */
+/*   Updated: 2025/04/14 23:58:54 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,32 @@ typedef struct s_stack
 {
 	int *array;
 	int size;
-	int capicity;
+	int capacity;
 }	t_stack;
 
 /* Function prototypes */
 // Parser functions
-int validation(int ac, char **av);
-t_stack *parse_args(int ac, char **ac);
-t_stack *parse_list(int capacity))
+int 	validation(int ac, char **av);
+t_stack *parse_args(int ac, char **av);
+t_stack *stack_init(int capacity);
 
 // Stack operations
-void	push(t_stack *src
+void	push(t_stack *src, t_stack *dest, char stack_name);		// pa, pb
+void	swap(t_stack *stack, char stack_name);					// sa, sb, ss
+void	rotate(t_stack *stack, char stack_name_);				// ra, rb, rr	
+void	reverse_rotate(t_stack *stack, char stack_name);		// rra, rrb, rrr
 
 // Utility functions
 int		stack_size(t_stack *stack);
 void	free_stack(t_stack **stack);
+void	print_stack(t_stack *stack);
+int		is_sorted(t_stack *stack);
+
+// Sorting algos
+void	sort_3(t_stack *stack);
+void	sort_5(t_stack *stack_a, t_stack *stack_b);
+void	sort_medium(t_stack *stack_a, t_stack *stack_b);
+void	sort_large(t_stack *stack_a, t_stack *stack_b);
 
 #endif
 
