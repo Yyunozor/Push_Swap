@@ -4,6 +4,25 @@
 
 This roadmap provides a detailed, step-by-step guide to completing the Push_Swap project at 42 Lausanne within 10 days, dedicating 10 hours daily. The objective is to efficiently sort numbers using two stacks with minimal operations, adhering strictly to the 42 Norm.
 
+push_swap/
+├── includes/
+│   └── push_swap.h
+├── libft_utils/     # previously utils/, contains copied Libft functions
+│   ├── ft_atoi.c
+│   ├── ft_strlen.c
+│   ├── ft_isdigit.c
+│   ├── ft_putstr_fd.c
+│   └── (other libft functions)
+├── src/
+│   ├── main.c
+│   ├── operations.c
+│   ├── parsing.c
+│   ├── sorting.c
+│   └── utils.c      # project-specific helper functions
+├── obj/
+├── Makefile
+└── README.md
+
 ---
 
 ## Project Requirements
@@ -18,7 +37,7 @@ This roadmap provides a detailed, step-by-step guide to completing the Push_Swap
 
 ## Daily Roadmap
 
-### Day 1: Setup & Planning
+### Day 1: Setup & Planning:
 
 - **Understand Project Scope:**
   - Thoroughly read the project subject to grasp rules and constraints.
