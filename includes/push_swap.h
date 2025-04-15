@@ -6,7 +6,7 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 18:35:08 by anpayot           #+#    #+#             */
-/*   Updated: 2025/04/16 01:06:08 by anpayot          ###   ########.fr       */
+/*   Updated: 2025/04/16 01:21:20 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,9 @@ t_stack *stack_init(int capacity);
 // Stack operations
 void	push(t_stack *src, t_stack *dest, char stack_name);		// pa, pb
 void	swap(t_stack *stack, char stack_name);					// sa, sb, ss
-void	rotate(t_stack *stack, char stack_name_);				// ra, rb, rr	
+void	rotate(t_stack *stack, char stack_name);				// ra, rb, rr	
 void	reverse_rotate(t_stack *stack, char stack_name);		// rra, rrb, rrr
+void	rrr(t_stack *stack_a, t_stack *stack_b);				// rrr
 
 // Utility functions
 int		stack_size(t_stack *stack);
