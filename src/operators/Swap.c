@@ -6,9 +6,8 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 18:32:03 by anpayot           #+#    #+#             */
-/*   Updated: 2025/04/14 20:06:03 by anpayot          ###   ########.fr       */
+/*   Updated: 2025/04/15 22:29:36 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
-
