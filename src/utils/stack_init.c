@@ -6,7 +6,7 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 22:40:43 by anpayot           #+#    #+#             */
-/*   Updated: 2025/04/15 22:44:53 by anpayot          ###   ########.fr       */
+/*   Updated: 2025/04/16 01:04:35 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,22 +29,3 @@ t_stack	*stack_init(int capacity)
 	new_stack->capacity = capacity;
 	return (new_stack);
 }
-
-/**
- * @brief Initializes a new stack with the specified capacity
- *
- * @param capacity Maximum number of elements the stack can hold
- * @return Pointer to the newly created stack or NULL if allocation fails
- * 
- * @details
- * Creates and allocates memory for a new stack structure with the specified
- * maximum capacity.
- * - Allocates memory for the stack structure
- * - Allocates memory for the stack's internal array of integers
- * - Initializes size to 0 and sets the maximum capacity
- * - Returns NULL if any memory allocation fails
- * 
- * @note Time complexity: O(1)
- * @note Space complexity: O(capacity)
- */
-t_stack	*stack_init(int capacity);

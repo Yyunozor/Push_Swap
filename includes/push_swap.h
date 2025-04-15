@@ -6,7 +6,7 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 18:35:08 by anpayot           #+#    #+#             */
-/*   Updated: 2025/04/14 23:58:54 by anpayot          ###   ########.fr       */
+/*   Updated: 2025/04/16 01:06:08 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PUSH_SWAP_H
 
 # include "../ft_printf2/includes/ft_printf.h"
+# include "push_swap_doc.h"
 
 /* Basic structure definitions */
 typedef struct s_stack
