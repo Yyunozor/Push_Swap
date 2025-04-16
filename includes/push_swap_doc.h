@@ -6,14 +6,15 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 00:00:00 by anpayot           #+#    #+#             */
-/*   Updated: 2025/04/16 03:32:32 by anpayot          ###   ########.fr       */
+/*   Updated: 2025/04/16 03:44:10 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_DOC_H
 # define PUSH_SWAP_DOC_H
 
-# include "push_swap.h" // Ensure t_stack is defined before using it
+# include "stack.h"
+# include "push_swap.h"
 
 /**
  * @file push_swap_doc.h
