@@ -1,3 +1,6 @@
+# OS Detection
+OS := $(shell uname -s)
+
 # Variables
 NAME = libft.a
 CFLAGS = -Wall -Wextra -Werror
@@ -15,24 +18,39 @@ SRC = ft_numlen.c ft_isvalid_base.c ft_atoi_base.c ft_atol.c ft_revstr.c ft_itoa
 
 OBJ = $(SRC:.c=.o)
 
+# Platform-specific settings
+ifeq ($(OS),Darwin)
+    # macOS settings
+    ECHO_COMPILED = @echo "Library compiled."
+    ECHO_SUCCESS = @echo "libft.a created successfully!"
+    ECHO_REMOVED = @echo "Object files removed."
+    ECHO_LIBREMOVED = @echo "Library removed."
+else
+    # Linux settings
+    ECHO_COMPILED = @echo "\033[1;32m✓ libft objects compiled\033[0m"
+    ECHO_SUCCESS = @echo "\033[1;32m✓ libft.a ready\033[0m"
+    ECHO_REMOVED = @echo "\033[1;34m✓ libft objects cleaned\033[0m"
+    ECHO_LIBREMOVED = @echo "\033[1;34m✓ libft.a removed\033[0m"
+endif
+
 # Default target
 all: $(NAME)
-	@echo "libft.a created successfully!"
+	$(ECHO_SUCCESS)
 
 $(NAME): $(OBJ)
 	@ar rcs $(NAME) $(OBJ)
-	@echo "Library compiled."
+	$(ECHO_COMPILED)
 
 %.o: %.c
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	@rm -f $(OBJ)
-	@echo "Object files removed."
+	$(ECHO_REMOVED)
 
 fclean: clean
 	@rm -f $(NAME)
-	@echo "Library removed."
+	$(ECHO_LIBREMOVED)
 
 re: fclean all
 
