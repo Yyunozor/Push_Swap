@@ -6,7 +6,7 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 19:21:03 by anpayot           #+#    #+#             */
-/*   Updated: 2025/04/16 05:05:54 by anpayot          ###   ########.fr       */
+/*   Updated: 2025/04/16 19:59:06 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ static void	rev_rotate(t_stack *stack_a, t_stack *stack_b, char op)
 		rotated += perform_rev_rotate(stack_a);
 	if (op == 'b' || op == 'r')
 		rotated += perform_rev_rotate(stack_b);
-	
 	if (rotated)
 	{
 		if (op == 'a')

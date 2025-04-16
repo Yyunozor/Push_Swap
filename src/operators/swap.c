@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Swap.c                                             :+:      :+:    :+:   */
+/*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 18:32:03 by anpayot           #+#    #+#             */
-/*   Updated: 2025/04/16 05:37:32 by anpayot          ###   ########.fr       */
+/*   Updated: 2025/04/16 19:58:08 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ static void	swap(t_stack *stack_a, t_stack *stack_b, char op)
 		swapped += perform_swap(stack_a);
 	if (op == 'b' || op == 's')
 		swapped += perform_swap(stack_b);
-	
 	if (swapped)
 	{
 		if (op == 'a')

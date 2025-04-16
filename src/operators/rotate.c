@@ -6,7 +6,7 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 19:21:06 by anpayot           #+#    #+#             */
-/*   Updated: 2025/04/16 05:06:17 by anpayot          ###   ########.fr       */
+/*   Updated: 2025/04/16 19:58:51 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
  * @param stack The stack to manipulate
  * @return int 1 if the rotation was performed, 0 otherwise
  */
-static int perform_rotate(t_stack *stack)
+static int	perform_rotate(t_stack *stack)
 {
 	int	temp;
 	int	i;
@@ -49,7 +49,7 @@ static int perform_rotate(t_stack *stack)
  * @param stack_b Second stack
  * @param op Operation code: 'a' for ra, 'b' for rb, 'r' for rr
  */
-static void rotate(t_stack *stack_a, t_stack *stack_b, char op)
+static void	rotate(t_stack *stack_a, t_stack *stack_b, char op)
 {
 	int	rotated;
 
@@ -58,7 +58,6 @@ static void rotate(t_stack *stack_a, t_stack *stack_b, char op)
 		rotated += perform_rotate(stack_a);
 	if (op == 'b' || op == 'r')
 		rotated += perform_rotate(stack_b);
-	
 	if (rotated)
 	{
 		if (op == 'a')
@@ -70,7 +69,7 @@ static void rotate(t_stack *stack_a, t_stack *stack_b, char op)
 	}
 }
 
-void ra_rb(t_stack *stack, char stack_letter)
+void	ra_rb(t_stack *stack, char stack_letter)
 {
 	if (stack_letter == 'a')
 		rotate(stack, NULL, 'a');
@@ -78,7 +77,7 @@ void ra_rb(t_stack *stack, char stack_letter)
 		rotate(NULL, stack, 'b');
 }
 
-void rr(t_stack *stack_a, t_stack *stack_b)
+void	rr(t_stack *stack_a, t_stack *stack_b)
 {
 	rotate(stack_a, stack_b, 'r');
 }

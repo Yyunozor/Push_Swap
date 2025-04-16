@@ -6,7 +6,7 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 19:20:56 by anpayot           #+#    #+#             */
-/*   Updated: 2025/04/16 05:07:34 by anpayot          ###   ########.fr       */
+/*   Updated: 2025/04/16 20:00:01 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ static void	push(t_stack *src_a, t_stack *src_b, char op)
 		pushed = perform_push(src_b, src_a);
 	else if (op == 'b')
 		pushed = perform_push(src_a, src_b);
-	
 	if (pushed)
 	{
 		if (op == 'a')
@@ -78,7 +77,7 @@ static void	push(t_stack *src_a, t_stack *src_b, char op)
 
 void	pa_pb(t_stack *src, t_stack *dest, char stack_letter)
 {
-	if (stack_letter== 'a')
+	if (stack_letter == 'a')
 		push(dest, src, 'a');
 	else if (stack_letter == 'b')
 		push(src, dest, 'b');

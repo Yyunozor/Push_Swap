@@ -6,11 +6,43 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 02:50:22 by anpayot           #+#    #+#             */
-/*   Updated: 2025/04/16 02:51:12 by anpayot          ###   ########.fr       */
+/*   Updated: 2025/04/16 19:57:15 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
+
+/**
+ * @brief Initializes a new stack with a given capacity.
+ *
+ * This function allocates memory for a stack structure and its data array.
+ * If memory allocation fails at any point, it ensures proper cleanup and
+ * returns NULL.
+ *
+ * @param capacity The maximum number of elements the stack can hold.
+ * @return A pointer to the newly created stack,
+ *         or NULL if memory allocation fails.
+ *
+ * @note The caller is responsible for freeing the allocated memory using
+ *       appropriate cleanup functions to avoid memory leaks.
+ */
+t_stack	*stack_init(int capacity)
+{
+	t_stack	*new_stack;
+
+	new_stack = (t_stack *)malloc(sizeof(t_stack));
+	if (!new_stack)
+		return (NULL);
+	new_stack->data = (int *)malloc(sizeof(int) * capacity);
+	if (!new_stack->data)
+	{
+		free(new_stack);
+		return (NULL);
+	}
+	new_stack->top = 0;
+	new_stack->capacity = capacity;
+	return (new_stack);
+}
 
 /**
  * @brief Frees the memory allocated to a stack
