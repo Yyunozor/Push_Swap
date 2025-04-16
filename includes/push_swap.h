@@ -6,7 +6,7 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 18:35:08 by anpayot           #+#    #+#             */
-/*   Updated: 2025/04/16 02:04:31 by anpayot          ###   ########.fr       */
+/*   Updated: 2025/04/16 03:33:32 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,12 @@
 # define PUSH_SWAP_H
 
 # include "../ft_printf2/includes/ft_printf.h"
-# include "push_swap_doc.h"
 
-/* Basic structure definitions */
-typedef struct s_stack
-{
-	int *array;
-	int size;
-	int capacity;
-}	t_stack;
+typedef struct s_stack {
+    int *data;
+    int top;
+    int capacity;
+} t_stack;
 
 /* Function prototypes */
 // Parser functions
@@ -32,7 +29,8 @@ t_stack	*stack_init(int capacity);
 
 // Stack operations
 void	pa_pb(t_stack *src, t_stack *dest, char stack_name);	// pa, pb
-void	sa_sb_ss(t_stack *stack, char stack_name);				// sa, sb, ss
+void	sa_sb_ss(t_stack *stack, char stack_name);				// sa, sb
+void	ss(t_stack *stack_a, t_stack *stack_b);					// ss
 void	ra_rb(t_stack *stack, char stack_name);					// ra, rb
 void	rra_rrb(t_stack *stack, char stack_name);				// rra, rrb
 void	rr(t_stack *stack_a, t_stack *stack_b);					// rr

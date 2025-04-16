@@ -6,7 +6,7 @@
 #    By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/01 10:00:00 by yyuno             #+#    #+#              #
-#    Updated: 2025/04/14 20:49:26 by anpayot          ###   ########.fr        #
+#    Updated: 2025/04/16 03:30:01 by anpayot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,9 @@ SRC_FILES = $(SRC_DIR)/main.c \
 			$(SRC_DIR)/operators/swap.c \
 			$(SRC_DIR)/operators/rotate.c \
 			$(SRC_DIR)/operators/reverse_rotate.c \
+			$(SRC_DIR)/utils/stack_init.c \
+			$(SRC_DIR)/utils/stack_utils.c \
+
 
 # Object files (in same location as source files)
 OBJ_FILES = $(SRC_FILES:.c=.o)
@@ -46,6 +49,7 @@ $(LIBFT):
 $(NAME): $(LIBFT) $(OBJ_FILES)
 	@$(CC) $(CFLAGS) $(OBJ_FILES) -L$(LIBFT_DIR) -lftprintf -o $(NAME)
 	@echo "$(NAME) compiled successfully"
+
 
 # Clean object files
 clean:

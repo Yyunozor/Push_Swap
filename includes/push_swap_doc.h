@@ -6,12 +6,14 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 00:00:00 by anpayot           #+#    #+#             */
-/*   Updated: 2025/04/16 02:04:07 by anpayot          ###   ########.fr       */
+/*   Updated: 2025/04/16 03:32:32 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_DOC_H
 # define PUSH_SWAP_DOC_H
+
+# include "push_swap.h" // Ensure t_stack is defined before using it
 
 /**
  * @file push_swap_doc.h
@@ -82,6 +84,20 @@ void	pa_pb(t_stack *src, t_stack *dest, char stack_name);
  * @note If the stack has 0 or 1 elements, the function does nothing.
  */
 void	sa_sb_ss(t_stack *stack, char stack_name);
+
+/**
+ * @brief Swaps the top two elements of both stacks simultaneously
+ *
+ * Implements the 'ss' operation required by push_swap algorithm.
+ * Swaps both stack_a and stack_b in a single operation.
+ *
+ * @param stack_a First stack to swap
+ * @param stack_b Second stack to swap
+ * 
+ * @note If either stack has 0 or 1 elements, the swap is not performed on that stack,
+ * but may still be performed on the other stack if possible.
+ */
+void	ss(t_stack *stack_a, t_stack *stack_b);
 
 /**
  * @brief Rotates a stack upward
@@ -159,26 +175,26 @@ int	stack_size(t_stack *stack);
 
 /**
  * @brief Frees the memory allocated to a stack
- *
+ * 
  * @param stack Pointer to the stack pointer to be freed
  */
-void	free_stack(t_stack **stack);
+void free_stack(t_stack **stack);
 
 /**
  * @brief Prints the content of a stack
- *
+ * 
  * Utility function for debugging purposes.
- *
+ * 
  * @param stack The stack to print
  */
-void	print_stack(t_stack *stack);
+void print_stack(t_stack *stack);
 
 /**
  * @brief Checks if a stack is sorted in ascending order
- *
+ * 
  * @param stack The stack to check
  * @return 1 if the stack is sorted, 0 otherwise
  */
-int	is_sorted(t_stack *stack);
+int is_sorted(t_stack *stack);
 
 #endif

@@ -6,35 +6,80 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 19:20:56 by anpayot           #+#    #+#             */
-/*   Updated: 2025/04/16 02:04:07 by anpayot          ###   ########.fr       */
+/*   Updated: 2025/04/16 02:35:34 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
-void	pa_pb(t_stack *src, t_stack *dest, char stack_name)
+/**
+ * @brief Pushes the first element of one stack to another stack
+ * 
+ * This function takes the first element of the source stack and places it
+ * at the top of the destination stack. If the source stack is empty,
+ * nothing happens.
+ * 
+ * @param src Source stack
+ * @param dest Destination stack
+ * @return int 1 if the push was performed, 0 otherwise
+ */
+static int	perform_push(t_stack *src, t_stack *dest)
 {
 	int	i;
 
-	if (src->size == 0)
-		return ;
-	i = dest->size;
+	if (src->top == 0)
+		return (0);
+	i = dest->top;
 	while (i > 0)
 	{
-		dest->array[i] = dest->array[i - 1];
+		dest->data[i] = dest->data[i - 1];
 		i--;
 	}
-	dest->array[0] = src->array[0];
-	dest->size++;
+	dest->data[0] = src->data[0];
+	dest->top++;
 	i = 0;
-	while (i < src->size - 1)
+	while (i < src->top - 1)
 	{
-		src->array[i] = src->array[i + 1];
+		src->data[i] = src->data[i + 1];
 		i++;
 	}
-	src->size--;
+	src->top--;
+	return (1);
+}
+
+/**
+ * @brief Unified function for all push operations
+ * 
+ * This function handles push operations (pa, pb)
+ * based on the op parameter passed.
+ * 
+ * @param src_a Source stack A
+ * @param src_b Source stack B
+ * @param op Operation code: 'a' for pa (B->A), 'b' for pb (A->B)
+ */
+static void	push(t_stack *src_a, t_stack *src_b, char op)
+{
+	int	pushed;
+
+	pushed = 0;
+	if (op == 'a')
+		pushed = perform_push(src_b, src_a);
+	else if (op == 'b')
+		pushed = perform_push(src_a, src_b);
+	
+	if (pushed)
+	{
+		if (op == 'a')
+			ft_printf("pa\n");
+		else if (op == 'b')
+			ft_printf("pb\n");
+	}
+}
+
+void	pa_pb(t_stack *src, t_stack *dest, char stack_name)
+{
 	if (stack_name == 'a')
-		ft_printf("pa\n");
+		push(dest, src, 'a');
 	else if (stack_name == 'b')
-		ft_printf("pb\n");
+		push(src, dest, 'b');
 }
