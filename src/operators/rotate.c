@@ -6,7 +6,7 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 19:21:06 by anpayot           #+#    #+#             */
-/*   Updated: 2025/04/16 02:51:12 by anpayot          ###   ########.fr       */
+/*   Updated: 2025/04/16 05:06:17 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,11 @@ static void rotate(t_stack *stack_a, t_stack *stack_b, char op)
 	}
 }
 
-void ra_rb(t_stack *stack, char stack_name)
+void ra_rb(t_stack *stack, char stack_letter)
 {
-	if (stack_name == 'a')
+	if (stack_letter == 'a')
 		rotate(stack, NULL, 'a');
-	else if (stack_name == 'b')
+	else if (stack_letter == 'b')
 		rotate(NULL, stack, 'b');
 }
 

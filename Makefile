@@ -6,7 +6,7 @@
 #    By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/01 10:00:00 by yyuno             #+#    #+#              #
-#    Updated: 2025/04/16 03:30:01 by anpayot          ###   ########.fr        #
+#    Updated: 2025/04/16 03:30:01 by anpayot          #+#    #+#              #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,8 +28,7 @@ SRC_FILES = $(SRC_DIR)/main.c \
 			$(SRC_DIR)/operators/rotate.c \
 			$(SRC_DIR)/operators/reverse_rotate.c \
 			$(SRC_DIR)/utils/stack_init.c \
-			$(SRC_DIR)/utils/stack_utils.c \
-
+			$(SRC_DIR)/utils/stack_utils.c
 
 # Object files (in same location as source files)
 OBJ_FILES = $(SRC_FILES:.c=.o)
@@ -39,27 +38,25 @@ all: $(NAME)
 
 # Compile libftprintf
 $(LIBFT):
-	@$(MAKE) -C $(LIBFT_DIR)
+	$(MAKE) -C $(LIBFT_DIR)
 
 # Compile source files
 %.o: %.c
-	@$(CC) $(CFLAGS) -I$(INC_DIR) -I$(LIBFT_DIR) -c $< -o $@
+	$(CC) $(CFLAGS) -I$(INC_DIR) -I$(LIBFT_DIR) -c $< -o $@
 
 # Link final executable
 $(NAME): $(LIBFT) $(OBJ_FILES)
-	@$(CC) $(CFLAGS) $(OBJ_FILES) -L$(LIBFT_DIR) -lftprintf -o $(NAME)
-	@echo "$(NAME) compiled successfully"
-
+	$(CC) $(CFLAGS) $(OBJ_FILES) -L$(LIBFT_DIR) -lftprintf -o $(NAME)
 
 # Clean object files
 clean:
-	@rm -f $(OBJ_FILES)
-	@$(MAKE) -C $(LIBFT_DIR) clean
+	rm -f $(OBJ_FILES)
+	$(MAKE) -C $(LIBFT_DIR) clean
 
 # Clean everything
 fclean: clean
-	@rm -f $(NAME)
-	@$(MAKE) -C $(LIBFT_DIR) fclean
+	rm -f $(NAME)
+	$(MAKE) -C $(LIBFT_DIR) fclean
 
 # Rebuild
 re: fclean all
