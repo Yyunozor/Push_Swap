@@ -6,13 +6,13 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 19:20:56 by anpayot           #+#    #+#             */
-/*   Updated: 2025/04/16 01:04:35 by anpayot          ###   ########.fr       */
+/*   Updated: 2025/04/16 02:04:07 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
-void	push(t_stack *src, t_stack *dest, char stack_name)
+void	pa_pb(t_stack *src, t_stack *dest, char stack_name)
 {
 	int	i;
 

@@ -6,7 +6,7 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 00:00:00 by anpayot           #+#    #+#             */
-/*   Updated: 2025/04/16 01:19:42 by anpayot          ###   ########.fr       */
+/*   Updated: 2025/04/16 02:04:07 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,40 +23,108 @@
  */
 
 /**
- * @brief Moves the top element from source stack to destination stack
+ * @brief Validates if all arguments are valid integers
  *
- * Implements the 'pa' and 'pb' operations required by push_swap algorithm.
- * When stack_name is 'a', implements 'pa' (push to stack a).
- * When stack_name is 'b', implements 'pb' (push to stack b).
+ * Checks for invalid characters, non-integer inputs,
+ * duplicates, and numbers out of range.
  *
- * @param src The source stack to take the element from
- * @param dest The destination stack to place the element on top of
- * @param stack_name Character 'a' or 'b' to determine which operation to print
- * 
- * @note If the source stack is empty, the function does nothing.
- * 
- * @details Implementation:
- *   1. Checks if source stack is empty
- *   2. Shifts destination stack elements to make space
- *   3. Moves top element from source to destination
- *   4. Updates stack sizes accordingly
- *   5. Prints the operation ('pa' or 'pb')
- *
- * @complexity Time: O(n) where n is the max size of source or destination
- * @complexity Space: O(1)
+ * @param ac Argument count (excluding program name)
+ * @param av Arguments array (excluding program name)
+ * @return 1 if all arguments are valid, 0 otherwise
  */
-void	push(t_stack *src, t_stack *dest, char stack_name);
+int	validation(int ac, char **av);
 
 /**
- * @brief Moves the bottom element of the stack to the top
+ * @brief Parses command line arguments into a stack
+ *
+ * Creates a new stack and fills it with the integer values
+ * from the command line arguments.
+ *
+ * @param ac Argument count (excluding program name)
+ * @param av Arguments array (excluding program name)
+ * @return A pointer to the initialized stack, or NULL on error
+ */
+t_stack	*parse_args(int ac, char **av);
+
+/**
+ * @brief Initializes an empty stack with a given capacity
+ *
+ * @param capacity Maximum number of elements the stack can hold
+ * @return A pointer to the initialized stack, or NULL on error
+ */
+t_stack	*stack_init(int capacity);
+
+/**
+ * @brief Pushes the top element from source stack to destination stack
+ *
+ * Takes the first element at the top of source and puts it at the top of
+ * destination. Does nothing if source is empty.
+ * When stack_name is 'a', implements 'pa' (push to stack a).
+ * When stack_name is 'b', implements 'pb' (push to stack b).
+ * 
+ * @param src Source stack
+ * @param dest Destination stack
+ * @param stack_name 'a' for pa, 'b' for pb
+ */
+void	pa_pb(t_stack *src, t_stack *dest, char stack_name);
+
+/**
+ * @brief Swaps the top two elements of a stack
+ *
+ * Implements the 'sa', 'sb', 'ss' operations required by push_swap algorithm.
+ * When stack_name is 'a', implements 'sa' (swap stack a).
+ * When stack_name is 'b', implements 'sb' (swap stack b).
+ * When stack_name is 's', implements 'ss' (swap both stacks).
+ *
+ * @param stack The stack to be manipulated
+ * @param stack_name Character 'a', 'b', or 's' to determine which operation to print
+ * 
+ * @note If the stack has 0 or 1 elements, the function does nothing.
+ */
+void	sa_sb_ss(t_stack *stack, char stack_name);
+
+/**
+ * @brief Rotates a stack upward
+ *
+ * Implements the 'ra' and 'rb' operations required by push_swap algorithm.
+ * When stack_name is 'a', implements 'ra' (rotate stack a).
+ * When stack_name is 'b', implements 'rb' (rotate stack b).
+ *
+ * @param stack The stack to be manipulated
+ * @param stack_name Character 'a' or 'b' to determine which operation to print
+ * 
+ * @note If the stack has 1 or 0 elements, the function does nothing.
+ * 
+ * @details Implementation:
+ *   1. Checks if stack has enough elements to rotate
+ *   2. Stores the first element in a temporary variable
+ *   3. Shifts all elements up by 1 position
+ *   4. Places the former first element at the bottom (last index)
+ */
+void	ra_rb(t_stack *stack, char stack_name);
+
+/**
+ * @brief Rotates both stacks upward simultaneously
+ *
+ * Implements the 'rr' operation required by push_swap algorithm.
+ * Rotates both stack_a and stack_b upward in a single operation.
+ *
+ * @param stack_a First stack to rotate
+ * @param stack_b Second stack to rotate
+ * 
+ * @note If both stacks have 1 or 0 elements, the function does nothing.
+ */
+void	rr(t_stack *stack_a, t_stack *stack_b);
+
+/**
+ * @brief Reverse rotates a stack
  *
  * Implements the 'rra' and 'rrb' operations required by push_swap algorithm.
  * When stack_name is 'a', implements 'rra' (reverse rotate stack a).
  * When stack_name is 'b', implements 'rrb' (reverse rotate stack b).
- * When stack_name is 'r', it's used internally by the rrr operation.
  *
  * @param stack The stack to be manipulated
- * @param stack_name Character 'a', 'b', or 'r' to determine which operation to print
+ * @param stack_name Character 'a' or 'b' to determine which operation to print
  * 
  * @note If the stack has 1 or 0 elements, the function does nothing.
  * 
@@ -65,50 +133,52 @@ void	push(t_stack *src, t_stack *dest, char stack_name);
  *   2. Stores the last element in a temporary variable
  *   3. Shifts all elements down by 1 position
  *   4. Places the former last element at the top (index 0)
- *   5. Prints the operation ('rra', 'rrb', or 'rrr') based on stack_name
- *
- * @complexity Time: O(n) where n is the size of the stack
- * @complexity Space: O(1)
  */
-void	reverse_rotate(t_stack *stack, char stack_name);
+void	rra_rrb(t_stack *stack, char stack_name);
 
 /**
- * @brief Applies reverse_rotate to both stacks a and b
+ * @brief Reverse rotates both stacks simultaneously
  *
  * Implements the 'rrr' operation required by push_swap algorithm.
- * This is equivalent to calling reverse_rotate on both stack_a and stack_b,
- * but only prints 'rrr' once rather than 'rra' and 'rrb' separately.
+ * Reverse rotates both stack_a and stack_b in a single operation.
  *
- * @param stack_a The first stack to reverse rotate
- * @param stack_b The second stack to reverse rotate
+ * @param stack_a First stack to reverse rotate
+ * @param stack_b Second stack to reverse rotate
  * 
- * @details Implementation:
- *   1. Calls reverse_rotate on stack_a with special flag to avoid printing
- *   2. Calls reverse_rotate on stack_b with special flag to avoid printing
- *   3. Prints 'rrr' once
- *
- * @complexity Time: O(n+m) where n is the size of stack_a and m is the size of stack_b
- * @complexity Space: O(1)
+ * @note If both stacks have 1 or 0 elements, the function does nothing.
  */
 void	rrr(t_stack *stack_a, t_stack *stack_b);
 
 /**
- * @brief Initializes a new stack with the specified capacity
+ * @brief Returns the number of elements in a stack
  *
- * @param capacity Maximum number of elements the stack can hold
- * @return Pointer to the newly created stack or NULL if allocation fails
- * 
- * @details
- * Creates and allocates memory for a new stack structure with the specified
- * maximum capacity.
- * - Allocates memory for the stack structure
- * - Allocates memory for the stack's internal array of integers
- * - Initializes size to 0 and sets the maximum capacity
- * - Returns NULL if any memory allocation fails
- * 
- * @note Time complexity: O(1)
- * @note Space complexity: O(capacity)
+ * @param stack The stack to check
+ * @return The number of elements in the stack
  */
-t_stack	*stack_init(int capacity);
+int	stack_size(t_stack *stack);
+
+/**
+ * @brief Frees the memory allocated to a stack
+ *
+ * @param stack Pointer to the stack pointer to be freed
+ */
+void	free_stack(t_stack **stack);
+
+/**
+ * @brief Prints the content of a stack
+ *
+ * Utility function for debugging purposes.
+ *
+ * @param stack The stack to print
+ */
+void	print_stack(t_stack *stack);
+
+/**
+ * @brief Checks if a stack is sorted in ascending order
+ *
+ * @param stack The stack to check
+ * @return 1 if the stack is sorted, 0 otherwise
+ */
+int	is_sorted(t_stack *stack);
 
 #endif

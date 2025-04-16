@@ -6,7 +6,7 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 18:35:08 by anpayot           #+#    #+#             */
-/*   Updated: 2025/04/16 01:21:20 by anpayot          ###   ########.fr       */
+/*   Updated: 2025/04/16 02:04:31 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,16 @@ typedef struct s_stack
 
 /* Function prototypes */
 // Parser functions
-int 	validation(int ac, char **av);
-t_stack *parse_args(int ac, char **av);
-t_stack *stack_init(int capacity);
+int		validation(int ac, char **av);
+t_stack	*parse_args(int ac, char **av);
+t_stack	*stack_init(int capacity);
 
 // Stack operations
-void	push(t_stack *src, t_stack *dest, char stack_name);		// pa, pb
-void	swap(t_stack *stack, char stack_name);					// sa, sb, ss
-void	rotate(t_stack *stack, char stack_name);				// ra, rb, rr	
-void	reverse_rotate(t_stack *stack, char stack_name);		// rra, rrb, rrr
+void	pa_pb(t_stack *src, t_stack *dest, char stack_name);	// pa, pb
+void	sa_sb_ss(t_stack *stack, char stack_name);				// sa, sb, ss
+void	ra_rb(t_stack *stack, char stack_name);					// ra, rb
+void	rra_rrb(t_stack *stack, char stack_name);				// rra, rrb
+void	rr(t_stack *stack_a, t_stack *stack_b);					// rr
 void	rrr(t_stack *stack_a, t_stack *stack_b);				// rrr
 
 // Utility functions
