@@ -6,20 +6,23 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 18:35:08 by anpayot           #+#    #+#             */
-/*   Updated: 2025/04/17 01:10:19 by anpayot          ###   ########.fr       */
+/*   Updated: 2025/04/17 02:54:48 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
+# include "stack.h"
 # include "../ft_printf2/includes/ft_printf.h"
 # include "push_swap_doc.h"
+
 # include <limits.h>
 
 /* Function prototypes */
+
 // Parser functions
-int		validation(int ac, char **av);
+int		num_checker(int ac, char **av);
 t_stack	*parse_args(int ac, char **av);
 
 // Stack operations

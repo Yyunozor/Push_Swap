@@ -6,14 +6,13 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 00:00:00 by anpayot           #+#    #+#             */
-/*   Updated: 2025/04/16 03:44:10 by anpayot          ###   ########.fr       */
+/*   Updated: 2025/04/17 02:53:59 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_DOC_H
 # define PUSH_SWAP_DOC_H
 
-# include "stack.h"
 # include "push_swap.h"
 
 /**
@@ -35,7 +34,7 @@
  * @param av Arguments array (excluding program name)
  * @return 1 if all arguments are valid, 0 otherwise
  */
-int	validation(int ac, char **av);
+int	num_checker(int ac, char **av);
 
 /**
  * @brief Parses command line arguments into a stack
@@ -84,7 +83,7 @@ void	pa_pb(t_stack *src, t_stack *dest, char stack_name);
  * 
  * @note If the stack has 0 or 1 elements, the function does nothing.
  */
-void	sa_sb_ss(t_stack *stack, char stack_name);
+void	sa_sb(t_stack *stack, char stack_name);
 
 /**
  * @brief Swaps the top two elements of both stacks simultaneously

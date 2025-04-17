@@ -23,8 +23,8 @@ RM = rm -f
 SRCS_DIR = src
 UTILS_DIR = $(SRCS_DIR)/utils
 OPERATORS_DIR = $(SRCS_DIR)/operators
-PARSING_DIR = $(SRCS_DIR)/parsing
-ALGORITHMS_DIR = $(SRCS_DIR)/algorithms
+PARSING_DIR = $(SRCS_DIR)/parsers
+ALGORITHMS_DIR = $(SRCS_DIR)/algos
 DEBUG_DIR = $(SRCS_DIR)/debug
 
 # Platform-specific settings
@@ -47,18 +47,10 @@ SRCS = $(SRCS_DIR)/main.c \
        $(OPERATORS_DIR)/push.c \
        $(OPERATORS_DIR)/swap.c \
        $(OPERATORS_DIR)/rotate.c \
-       $(OPERATORS_DIR)/reverse_rotate.c
+       $(OPERATORS_DIR)/reverse_rotate.c \
+	   $(PARSING_DIR)/checker.c \
+	   $(UTILS_DIR)/stack_utils.c \
 
-# Find all other source files
-ifneq ($(wildcard $(UTILS_DIR)/*.c),)
-    SRCS += $(wildcard $(UTILS_DIR)/*.c)
-endif
-ifneq ($(wildcard $(PARSING_DIR)/*.c),)
-    SRCS += $(wildcard $(PARSING_DIR)/*.c)
-endif
-ifneq ($(wildcard $(ALGORITHMS_DIR)/*.c),)
-    SRCS += $(wildcard $(ALGORITHMS_DIR)/*.c)
-endif
 
 DEBUG_SRCS = $(wildcard $(DEBUG_DIR)/*.c)
 

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   input_validator.c                                  :+:      :+:    :+:   */
+/*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 20:29:53 by anpayot           #+#    #+#             */
-/*   Updated: 2025/04/16 22:54:59 by anpayot          ###   ########.fr       */
+/*   Updated: 2025/04/17 02:40:47 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static int	duplicated(int count, char **args)
 	return (0);
 }
 
-int	validation(int ac, char **av)
+int	num_checker(int ac, char **av)
 {
 	int	i;
 
