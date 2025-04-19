@@ -49,6 +49,8 @@ SRCS = $(SRCS_DIR)/main.c \
        $(OPERATORS_DIR)/rotate.c \
        $(OPERATORS_DIR)/reverse_rotate.c \
 	   $(PARSING_DIR)/checker.c \
+       $(PARSING_DIR)/parse_args.c \
+       $(PARSING_DIR)/parse_utils.c \
 	   $(UTILS_DIR)/stack_utils.c \
 
 
