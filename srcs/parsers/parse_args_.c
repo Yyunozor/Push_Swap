@@ -1,17 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_args.c                                       :+:      :+:    :+:   */
+/*   parse_args_.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 03:15:30 by anpayot           #+#    #+#             */
-/*   Updated: 2025/04/19 18:40:41 by anpayot          ###   ########.fr       */
+/*   Updated: 2025/04/19 18:59:26 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
+/**
+ * @brief Loads a stack with integer values from a flattened array of arguments.
+ *
+ * This function initializes a stack and populates it with integer values
+ * converted from the given array of arguments. The stack is filled in reverse
+ * order, with the last argument placed at the bottom of the stack.
+ *
+ * @param args The flattened array of arguments.
+ * @param total_count The total number of arguments in the array.
+ * @return A pointer to the initialized stack, or NULL if an error occurs.
+ */
 static char	**flatten_args(int ac, char **av, int *total_count)
 {
 	char	**args;
@@ -27,6 +38,18 @@ static char	**flatten_args(int ac, char **av, int *total_count)
 	return (args);
 }
 
+/**
+ * @brief Flattens the command-line arguments into a single array of strings.
+ *
+ * This function processes the command-line arguments, calculates the total
+ * number of arguments, and initializes a flattened array to store them.
+ *
+ * @param ac The argument count from the command line.
+ * @param av The argument vector from the command line.
+ * @param total_count Pointer to an integer where the total count of arguments
+ *                    will be stored.
+ * @return A pointer to the flattened array of arguments, or NULL if an error occurs.
+ */
 static t_stack	*load_stack(char **args, int total_count)
 {
 	t_stack	*stack_a;
