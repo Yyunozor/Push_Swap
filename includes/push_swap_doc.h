@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_doc.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+         +:+     */
+/*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 00:00:00 by anpayot           #+#    #+#             */
-/*   Updated: 2025/04/19 18:22:31 by anpayot          ###   ########.fr       */
+/*   Updated: 2025/04/19 18:40:41 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -255,17 +255,5 @@ char	**init_args_array(int count);
  * @return 0 on success, -1 on error
  */
 int		process_args(int ac, char **av, char **args);
-
-/**
- * @brief Validates that all arguments are valid integers
- *
- * Comprehensive validation that checks for valid format, range,
- * and uniqueness of all arguments.
- *
- * @param ac Argument count
- * @param av Arguments array
- * @return 1 if all arguments are valid, 0 otherwise
- */
-int		validation(int ac, char **av);
 
 #endif

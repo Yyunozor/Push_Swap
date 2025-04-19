@@ -6,7 +6,7 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 03:15:30 by anpayot           #+#    #+#             */
-/*   Updated: 2025/04/19 18:28:30 by anpayot          ###   ########.fr       */
+/*   Updated: 2025/04/19 18:40:41 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ t_stack	*parse_args(int ac, char **av)
 	args = flatten_args(ac, av, &total_count);
 	if (!args)
 		return (NULL);
-	if (!validation(total_count, args))
+	if (!num_checker(total_count, args))
 	{
 		free_string_array(args);
 		return (NULL);

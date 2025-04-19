@@ -4,7 +4,7 @@
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+         */
-/*                                                +#+#+#+#+#+   +#+           */
+/*                                                +#+#+#+#+#+   */
 /*   Created: 2025/04/14 18:35:08 by anpayot           #+#    #+#             */
 /*   Updated: 2025/04/19 15:51:30 by anpayot          ###   ########.fr       */
 /*                                                                            */
@@ -29,7 +29,6 @@ void	free_string_array(char **arr);
 int		process_split_arg(char *arg, char **args, int pos);
 char	**init_args_array(int count);
 int		process_args(int ac, char **av, char **args);
-int		validation(int ac, char **av);
 
 // Stack operations
 void	pa_pb(t_stack *src, t_stack *dest, char stack_name);	// pa, pb

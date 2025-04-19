@@ -20,7 +20,7 @@ CFLAGS = -Wall -Wextra -Werror
 RM = rm -f
 
 # Source files
-SRCS_DIR = src
+SRCS_DIR = srcs
 UTILS_DIR = $(SRCS_DIR)/utils
 OPERATORS_DIR = $(SRCS_DIR)/operators
 PARSING_DIR = $(SRCS_DIR)/parsers
@@ -48,7 +48,7 @@ SRCS = $(SRCS_DIR)/main.c \
        $(OPERATORS_DIR)/swap.c \
        $(OPERATORS_DIR)/rotate.c \
        $(OPERATORS_DIR)/reverse_rotate.c \
-	   $(PARSING_DIR)/checker.c \
+	   $(PARSING_DIR)/num_checker.c \
        $(PARSING_DIR)/parse_args.c \
        $(PARSING_DIR)/parse_utils.c \
 	   $(UTILS_DIR)/stack_utils.c \
