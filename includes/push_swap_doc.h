@@ -6,7 +6,7 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 00:00:00 by anpayot           #+#    #+#             */
-/*   Updated: 2025/04/19 18:54:39 by anpayot          ###   ########.fr       */
+/*   Updated: 2025/04/20 11:34:00 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,20 +199,20 @@ void	print_stack(t_stack *stack);
 int		is_sorted(t_stack *stack);
 
 /**
- * @brief Counts the total number of arguments after splitting space-separated values
+ * @brief Counts the total number of arguments after splitting
  *
- * Iterates through the argument list and counts individual arguments,
- * including those that need to be split by spaces.
+ * Determines the total number of arguments when all space-separated values
+ * are considered as individual arguments.
  *
- * @param ac Argument count
- * @param av Arguments array
+ * @param ac Number of arguments
+ * @param av Array of argument strings
  * @return Total number of arguments, or -1 on error
  */
 int		count_args(int ac, char **av);
 
 /**
- * @brief Frees memory allocated for a NULL-terminated array of strings
- *
+ * @brief Frees memory allocated for an array of strings
+ * 
  * Used for cleanup of dynamically allocated string arrays.
  *
  * @param arr Array of strings to free
@@ -220,40 +220,28 @@ int		count_args(int ac, char **av);
 void	free_string_array(char **arr);
 
 /**
- * @brief Processes a space-separated argument into individual arguments
- *
- * Splits a string by spaces and adds each component to the args array
+ * @brief Process a single argument that contains spaces
+ * 
+ * Splits a string by spaces and adds each component to the result array
  * starting at the given position.
  *
  * @param arg String to split
- * @param args Destination array for split components
- * @param pos Starting position in the destination array
- * @return New position after adding components, or -1 on error
+ * @param result Destination array for split components
+ * @param index Current position in the destination array
+ * @return Updated index after adding components, or -1 on error
  */
-int		process_split_arg(char *arg, char **args, int pos);
+int		process_space_arg(char *arg, char **result, int index);
 
 /**
- * @brief Initializes an array to hold flattened arguments
+ * @brief Loads a stack with integer values from a flattened array of arguments
  *
- * Allocates memory for a string array of the specified count plus
- * a NULL terminator.
+ * Creates a new stack and populates it with the parsed integers,
+ * placing them in reverse order to maintain the correct order in the stack.
  *
- * @param count Number of strings the array will hold
- * @return Pointer to the allocated array, or NULL on allocation failure
+ * @param args The flattened array of arguments
+ * @param total_count The total number of arguments in the array
+ * @return A pointer to the initialized stack, or NULL if an error occurs
  */
-char	**init_args_array(int count);
-
-/**
- * @brief Processes command line arguments into a flat array
- *
- * Handles each argument, splitting those with spaces, and copies
- * all into a single flat array.
- *
- * @param ac Argument count
- * @param av Arguments array
- * @param args Destination array for processed arguments
- * @return 0 on success, -1 on error
- */
-int		process_args(int ac, char **av, char **args);
+t_stack	*load_stack(char **args, int total_count);
 
 #endif

@@ -6,17 +6,42 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 20:30:00 by anpayot           #+#    #+#             */
-/*   Updated: 2025/04/19 18:23:40 by anpayot          ###   ########.fr       */
+/*   Updated: 2025/04/20 11:35:25 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
+
+int	process_space_arg(char *arg, char **result, int index)
+{
+	char	**split;
+	int		j;
+
+	split = ft_split(arg, ' ');
+	if (!split)
+		return (-1);
+	j = 0;
+	while (split[j])
+	{
+		result[index] = ft_strdup(split[j]);
+		if (!result[index])
+		{
+			free_string_array(split);
+			return (-1);
+		}
+		index++;
+		j++;
+	}
+	free_string_array(split);
+	return (index);
+}
 
 int	count_args(int ac, char **av)
 {
 	int		i;
 	int		total;
 	char	**split;
+	int		j;
 
 	total = 0;
 	i = 0;
@@ -27,7 +52,8 @@ int	count_args(int ac, char **av)
 			split = ft_split(av[i], ' ');
 			if (!split)
 				return (-1);
-			while (split[total])
+			j = 0;
+			while (split[j++])
 				total++;
 			free_string_array(split);
 		}
@@ -53,51 +79,19 @@ void	free_string_array(char **arr)
 	free(arr);
 }
 
-int	process_split_arg(char *arg, char **args, int pos)
+t_stack	*load_stack(char **args, int total_count)
 {
-	char	**split;
-	int		j;
+	t_stack	*stack_a;
+	int		i;
 
-	split = ft_split(arg, ' ');
-	if (!split)
+	stack_a = stack_init(total_count);
+	if (!stack_a)
+		return (NULL);
+	i = total_count - 1;
+	while (i >= 0)
 	{
-		free_string_array(args);
-		return (-1);
+		stack_a->data[stack_a->top++] = ft_atol(args[i]);
+		i--;
 	}
-	j = 0;
-	while (split[j])
-		args[pos++] = ft_strdup(split[j++]);
-	free_string_array(split);
-	return (pos);
-}
-
-char	**init_args_array(int count)
-{
-	char	**args;
-
-	args = malloc(sizeof(char *) * (count + 1));
-	return (args);
-}
-
-int	process_args(int ac, char **av, char **args)
-{
-	int	i;
-	int	pos;
-
-	pos = 0;
-	i = 0;
-	while (i < ac)
-	{
-		if (ft_strchr(av[i], ' '))
-		{
-			pos = process_split_arg(av[i], args, pos);
-			if (pos == -1)
-				return (-1);
-		}
-		else
-			args[pos++] = ft_strdup(av[i]);
-		i++;
-	}
-	args[pos] = NULL;
-	return (0);
+	return (stack_a);
 }

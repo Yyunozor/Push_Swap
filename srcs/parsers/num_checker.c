@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   num_checker_.c                                     :+:      :+:    :+:   */
+/*   num_checker.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 20:29:53 by anpayot           #+#    #+#             */
-/*   Updated: 2025/04/19 19:02:27 by anpayot          ###   ########.fr       */
+/*   Updated: 2025/04/20 11:35:03 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
 /**
- * @brief Checks if a given string represents a valid number.
+ * @brief Checks if a given string represents a valid number
  * 
  * A valid number is defined as an optional '+' or '-' sign followed by 
- * one or more digits. This function does not check for overflow or 
- * underflow, only the format of the string.
+ * one or more digits.
  * 
- * @param str The string to check.
- * @return int Returns 1 if the string is a valid number, 0 otherwise.
+ * @param str String to check
+ * @return 1 if the string is a valid number, 0 otherwise
  */
 static int	is_valid_number(char *str)
 {
@@ -41,15 +40,10 @@ static int	is_valid_number(char *str)
 }
 
 /**
- * @brief Checks if a given string represents a valid integer.
+ * @brief Checks if a given string represents a valid integer
  * 
- * This function first verifies if the string is a valid number using 
- * `is_valid_number`. Then, it converts the string to a long integer 
- * using `ft_atol` and checks if the value falls within the range of 
- * a 32-bit signed integer (INT_MIN to INT_MAX).
- * 
- * @param str The string to check.
- * @return int Returns 1 if the string is a valid integer, 0 otherwise.
+ * @param str String to check
+ * @return 1 if the string is a valid integer, 0 otherwise
  */
 static int	is_valid_int(char *str)
 {
@@ -58,19 +52,15 @@ static int	is_valid_int(char *str)
 	if (!is_valid_number(str))
 		return (0);
 	num = ft_atol(str);
-	return (num > INT_MIN && num <= INT_MAX);
+	return (num >= INT_MIN && num <= INT_MAX);
 }
 
 /**
- * @brief Checks for duplicate numbers in an array of strings.
+ * @brief Checks for duplicate integers in an array of strings
  * 
- * This function iterates through the array of strings, converts each 
- * string to a long integer using `ft_atol`, and compares every pair 
- * of numbers to detect duplicates.
- * 
- * @param count The number of elements in the array.
- * @param args The array of strings to check.
- * @return int Returns 1 if duplicates are found, 0 otherwise.
+ * @param count Number of elements in the array
+ * @param args Array of strings to check
+ * @return 1 if duplicates are found, 0 otherwise
  */
 static int	duplicated(int count, char **args)
 {
