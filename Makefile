@@ -39,7 +39,7 @@ else
     PRINTF_DIR = ft_printf2
     INCLUDES = -Iincludes -I$(PRINTF_DIR)/includes
     LIBS = -L./$(PRINTF_DIR) -lftprintf
-    MAKE_PRINTF = @make --no-print-directory -C $(PRINTF_DIR)
+    MAKE_PRINTF = @make -C $(PRINTF_DIR)
 endif
 
 # Files list (explicit to avoid missing files)
@@ -79,7 +79,7 @@ clean:
 ifeq ($(OS),Darwin)
 	@make -C $(PRINTF_DIR) clean
 else
-	@make --no-print-directory -C $(PRINTF_DIR) clean
+	@make -C $(PRINTF_DIR) clean
 endif
 	$(RM) $(OBJS) $(DEBUG_OBJS)
 	@echo "\033[1;34m🧹 Object files cleaned\033[0m"
@@ -88,7 +88,7 @@ fclean: clean
 ifeq ($(OS),Darwin)
 	@make -C $(PRINTF_DIR) fclean
 else
-	@make --no-print-directory -C $(PRINTF_DIR) fclean
+	@make $(PRINTF_DIR) fclean
 endif
 	$(RM) $(NAME) $(NAME)_debug
 	@echo "\033[1;34m🧹 Executables removed\033[0m"
