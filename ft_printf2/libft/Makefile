@@ -21,16 +21,17 @@ OBJ = $(SRC:.c=.o)
 # Platform-specific settings
 ifeq ($(OS),Darwin)
     # macOS settings
-    ECHO_COMPILED = @echo "Library compiled."
-    ECHO_SUCCESS = @echo "libft.a created successfully!"
-    ECHO_REMOVED = @echo "Object files removed."
-    ECHO_LIBREMOVED = @echo "Library removed."
+    ECHO_COMPILED = echo "Library compiled."
+    ECHO_SUCCESS = echo "libft.a created successfully!"
+    ECHO_REMOVED = echo "Object files removed."
+    ECHO_LIBREMOVED = echo "Library removed."
 else
     # Linux settings
-    ECHO_COMPILED = @echo "\033[1;32m✓ libft objects compiled\033[0m"
-    ECHO_SUCCESS = @echo "\033[1;32m✓ libft.a ready\033[0m"
-    ECHO_REMOVED = @echo "\033[1;34m✓ libft objects cleaned\033[0m"
-    ECHO_LIBREMOVED = @echo "\033[1;34m✓ libft.a removed\033[0m"
+    ECHO_COMPILED = echo "\033[1;32m✓ libft objects compiled\033[0m"
+    ECHO_SUCCESS = echo "\033[1;32m✓ libft.a ready\033[0m"
+
+    ECHO_REMOVED = echo "\033[1;34m✓ libft objects cleaned\033[0m"
+    ECHO_LIBREMOVED = echo "\033[1;34m✓ libft.a removed\033[0m"
 endif
 
 # Default target
@@ -38,18 +39,18 @@ all: $(NAME)
 	$(ECHO_SUCCESS)
 
 $(NAME): $(OBJ)
-	@ar rcs $(NAME) $(OBJ)
+	ar rcs $(NAME) $(OBJ)
 	$(ECHO_COMPILED)
 
 %.o: %.c
-	@$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	@rm -f $(OBJ)
+	rm -f $(OBJ)
 	$(ECHO_REMOVED)
 
 fclean: clean
-	@rm -f $(NAME)
+	rm -f $(NAME)
 	$(ECHO_LIBREMOVED)
 
 re: fclean all

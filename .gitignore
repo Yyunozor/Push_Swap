@@ -60,3 +60,7 @@ dkms.conf
 .Trashes
 
 .inspi
+
+# Project specific
+push_swap
+checker

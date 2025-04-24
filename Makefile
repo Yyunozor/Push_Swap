@@ -10,16 +10,19 @@
 #                                                                              #
 # **************************************************************************** #
 
-# OS Detection
-OS := $(shell uname -s)
+# ===== COLOR MACROS =====
+GREEN = \033[1;32m
+YELLOW = \033[1;33m
+BLUE = \033[1;34m
+RESET = \033[0m
 
-# Common settings
+# ===== BASIC CONFIGURATION =====
 NAME = push_swap
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 RM = rm -f
 
-# Source files
+# ===== DIRECTORY STRUCTURE =====
 SRCS_DIR = srcs
 UTILS_DIR = $(SRCS_DIR)/utils
 OPERATORS_DIR = $(SRCS_DIR)/operators
@@ -27,73 +30,76 @@ PARSING_DIR = $(SRCS_DIR)/parsers
 ALGORITHMS_DIR = $(SRCS_DIR)/algos
 DEBUG_DIR = $(SRCS_DIR)/debug
 
-# Platform-specific settings
-ifeq ($(OS),Darwin)
-    # macOS settings
-    PRINTF_DIR = ft_printf2
-    INCLUDES = -I./includes -I./$(PRINTF_DIR)/includes
-    LIBS = -L./$(PRINTF_DIR) -lftprintf
-    MAKE_PRINTF = @make -C $(PRINTF_DIR)
-else
-    # Linux settings
-    PRINTF_DIR = ft_printf2
-    INCLUDES = -Iincludes -I$(PRINTF_DIR)/includes
-    LIBS = -L./$(PRINTF_DIR) -lftprintf
-    MAKE_PRINTF = @make -C $(PRINTF_DIR)
-endif
+# ===== EXTERNAL LIBRARIES =====
+PRINTF_DIR = ft_printf2
+INCLUDES = -Iincludes -I$(PRINTF_DIR)/includes
+LIBS = -L$(PRINTF_DIR) -lftprintf
 
-# Files list (explicit to avoid missing files)
+# ===== SOURCE FILES =====
 SRCS = $(SRCS_DIR)/main.c \
        $(OPERATORS_DIR)/push.c \
        $(OPERATORS_DIR)/swap.c \
        $(OPERATORS_DIR)/rotate.c \
        $(OPERATORS_DIR)/reverse_rotate.c \
-	   $(PARSING_DIR)/num_checker.c \
+       $(PARSING_DIR)/num_checker.c \
        $(PARSING_DIR)/parse_args.c \
        $(PARSING_DIR)/parse_utils.c \
-	   $(UTILS_DIR)/stack_utils.c \
+       $(UTILS_DIR)/stack_utils.c
 
-
+# Debug sources using wildcard for flexibility
 DEBUG_SRCS = $(wildcard $(DEBUG_DIR)/*.c)
 
+# Object files derived from sources
 OBJS = $(SRCS:.c=.o)
 DEBUG_OBJS = $(DEBUG_SRCS:.c=.o)
 
-# Rules
+# ===== MAIN TARGETS =====
 all: $(NAME)
 
-$(NAME): ft_printf $(OBJS)
+$(NAME): ft_printf_lib $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) $(INCLUDES) $(LIBS) -o $(NAME)
-	@echo "\033[1;32m✅ Push_swap compiled successfully!\033[0m"
+	echo -e "$(GREEN)✅ Push_swap compiled successfully!$(RESET)"
 
-debug: ft_printf $(OBJS) $(DEBUG_OBJS)
+debug: ft_printf_lib $(OBJS) $(DEBUG_OBJS)
 	$(CC) $(CFLAGS) $(OBJS) $(DEBUG_OBJS) $(INCLUDES) $(LIBS) -o $(NAME)_debug
+	echo -e "$(YELLOW)🔍 Debug version compiled$(RESET)"
 
-ft_printf:
-	$(MAKE_PRINTF)
+# ===== DEPENDENCIES =====
+# Use a clear target name to avoid confusion
+ft_printf_lib:
+	cd $(PRINTF_DIR) && make
 
+# Pattern rule for object files
 %.o: %.c
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
+# ===== CLEANING =====
 clean:
-ifeq ($(OS),Darwin)
-	@make -C $(PRINTF_DIR) clean
-else
-	@make -C $(PRINTF_DIR) clean
-endif
+	cd $(PRINTF_DIR) && make clean
 	$(RM) $(OBJS) $(DEBUG_OBJS)
-	@echo "\033[1;34m🧹 Object files cleaned\033[0m"
+	echo -e "$(BLUE)🧹 Object files cleaned$(RESET)"
 
-fclean: clean
-ifeq ($(OS),Darwin)
-	@make -C $(PRINTF_DIR) fclean
-else
-	@make $(PRINTF_DIR) fclean
-endif
+fclean:
+	cd $(PRINTF_DIR) && make clean
+	$(RM) $(OBJS) $(DEBUG_OBJS)
+	echo -e "$(BLUE)🧹 Object files cleaned$(RESET)"
+	cd $(PRINTF_DIR) && make fclean
 	$(RM) $(NAME) $(NAME)_debug
-	@echo "\033[1;34m🧹 Executables removed\033[0m"
+	echo -e "$(BLUE)🧹 Executables removed$(RESET)"
 
-re: fclean all
+re:
+	cd $(PRINTF_DIR) && make clean
+	$(RM) $(OBJS) $(DEBUG_OBJS)
+	echo -e "$(BLUE)🧹 Object files cleaned$(RESET)"
+	cd $(PRINTF_DIR) && make fclean
+	$(RM) $(NAME) $(NAME)_debug
+	echo -e "$(BLUE)🧹 Executables removed$(RESET)"
+	cd $(PRINTF_DIR) && make
+	$(foreach src,$(SRCS),\
+		$(CC) $(CFLAGS) $(INCLUDES) -c $(src) -o $(src:.c=.o);)
+	$(CC) $(CFLAGS) $(OBJS) $(INCLUDES) $(LIBS) -o $(NAME)
+	echo -e "$(GREEN)✅ Push_swap recompiled successfully!$(RESET)"
 
-.PHONY: all ft_printf clean fclean re debug
+# ===== PHONY TARGETS =====
+.PHONY: all clean fclean re debug ft_printf_lib
 
