@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_doc.h                                    :+:      :+:    :+:   */
+/*   func_comm.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/16 00:00:00 by anpayot           #+#    #+#             */
-/*   Updated: 2025/04/20 11:34:00 by anpayot          ###   ########.fr       */
+/*   Created: 2025/04/27 12:20:19 by anpayot           #+#    #+#             */
+/*   Updated: 2025/04/27 12:23:44 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_DOC_H
-# define PUSH_SWAP_DOC_H
+#ifndef FUNC_COMM_H
+# define FUNC_COMM_H
 
 # include "push_swap.h"
 

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/25 01:10:29 by anpayot           #+#    #+#             */
-/*   Updated: 2025/04/25 01:10:31 by anpayot          ###   ########.fr       */
+/*   Created: 2025/04/27 12:20:12 by anpayot           #+#    #+#             */
+/*   Updated: 2025/04/27 12:23:44 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "stack.h"
 # include "../ft_printf2/includes/ft_printf.h"
-# include "push_swap_doc.h"
+# include "func_comm.h"
 
 # include <limits.h>
 
