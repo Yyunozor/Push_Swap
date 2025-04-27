@@ -2,8 +2,6 @@
 
 ## Overview
 
-This roadmap provides a detailed, step-by-step guide to completing the Push_Swap project at 42 Lausanne within 10 days, dedicating 10 hours daily. The objective is to efficiently sort numbers using two stacks with minimal operations, adhering strictly to the 42 Norm.
-
 ## Project Structure
 ```
 push_swap/
@@ -19,26 +17,25 @@ push_swap/
 │   └── ... (ft_printf and other related files)
 ├── src/
 │   ├── main.c                   # Entry point, argument handling
-│   ├── parsing/
-│   │   ├── input_validation.c   # Check for valid integers
+│   ├── parsers/
+│   │   ├── num_checker.c        # Check for valid integers
 │   │   ├── parse_args.c         # Process command-line args
-│   │   └── stack_init.c         # Initialize stacks
+│   │   └── parse_utils.c        # Some utility functions for parsing
 │   ├── operations/
-│   │   ├── push_ops.c           # pa, pb operations
-│   │   ├── swap_ops.c           # sa, sb, ss operations
-│   │   ├── rotate_ops.c         # ra, rb, rr operations
-│   │   └── reverse_rotate_ops.c # rra, rrb, rrr operations
+│   │   ├── push.c               # pa, pb operations
+│   │   ├── swap.c               # sa, sb, ss operations
+│   │   ├── rotate.c             # ra, rb, rr operations
+│   │   └── reverse_rotate.c     # rra, rrb, rrr operations
 │   ├── algorithms/
-│   │   ├── small_sort.c         # Logic for sorting ≤5 numbers
-│   │   ├── radix_sort.c         # For larger datasets
-│   │   └── chunk_sort.c         # Alternative sorting strategy
+│   │   ├── sort_s.c             # Logic for sorting ≤5 numbers
+│   │   ├── sort_m.c             # For larger datasets
+│   │   └── sort_l.c             # Alternative sorting strategy
 │   ├── utils/
 │   │   ├── stack_utils.c        # Stack creation, deletion, manipulation
-│   │   ├── sort_utils.c         # Helper functions for sorting
-│   │   └── array_utils.c        # Array manipulation helpers
+│   │   └── ___????              # Other functions is it necessary
 │   └── debug/
-│       └── visualizer.c         # Optional: for development debugging
-├── obj/                         # For object files
+│       └──                      # /////
+├── obj/                         # Not used for the moment
 ├── Makefile
 └── README.md
 ```
