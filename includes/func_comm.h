@@ -6,7 +6,7 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 12:20:19 by anpayot           #+#    #+#             */
-/*   Updated: 2025/04/27 12:23:44 by anpayot          ###   ########.fr       */
+/*   Updated: 2025/04/29 23:32:03 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -243,5 +243,28 @@ int		process_space_arg(char *arg, char **result, int index);
  * @return A pointer to the initialized stack, or NULL if an error occurs
  */
 t_stack	*load_stack(char **args, int total_count);
+
+/**
+ * @brief Sorts a stack of 3 or fewer elements
+ *
+ * Uses a direct approach with specific operations determined by the 
+ * relative order of the elements. The algorithm handles all possible 
+ * permutations of 3 elements optimally.
+ *
+ * @param stack The stack to be sorted
+ */
+void	sort_3(t_stack *stack);
+
+/**
+ * @brief Sorts a stack of 5 or fewer elements
+ * 
+ * Uses a strategy of pushing the smallest elements to stack_b,
+ * sorting the remaining 3 elements in stack_a using sort_3,
+ * then pushing elements back from stack_b to stack_a.
+ *
+ * @param stack_a The main stack to be sorted
+ * @param stack_b The auxiliary stack for the sorting process
+ */
+void	sort_5(t_stack *stack_a, t_stack *stack_b);
 
 #endif

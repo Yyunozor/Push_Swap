@@ -6,7 +6,7 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:47:22 by anpayot           #+#    #+#             */
-/*   Updated: 2025/04/29 22:49:43 by anpayot          ###   ########.fr       */
+/*   Updated: 2025/04/29 23:33:29 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,107 @@ void	sort_3(t_stack *stack)
 	}
 	else if (first < second && second > third)
 		rra_rrb(stack, 'a');
+}
+
+/**
+ * @brief Finds the index of the minimum value in a stack
+ *
+ * @param stack The stack to search
+ * @return The index of the minimum value, or -1 if the stack is empty
+ */
+static int	min_finder(t_stack *stack)
+{
+	int	i;
+	int	min_idx;
+	int	min_val;
+
+	if (stack->top == 0)
+		return (-1);
+	min_val = stack->data[0];
+	min_idx = 0;
+	i = 1;
+	while (i < stack->top)
+	{
+		if (stack->data[i] < min_val)
+		{
+			min_val = stack->data[i];
+			min_idx = i;
+		}
+		i++;
+	}
+	return (min_idx);
+}
+
+/**
+ * @brief Moves the minimum value to the top of the stack
+ *
+ * @param stack The stack to manipulate
+ */
+static void	min_to_top(t_stack *stack)
+{
+	int	min_idx;
+
+	min_idx = min_finder(stack);
+	if (min_idx <= stack->top / 2)
+	{
+		while (min_idx > 0)
+		{
+			ra_rb(stack, 'a');
+			min_idx--;
+		}
+	}
+	else
+	{
+		while (min_idx < stack->top)
+		{
+			rra_rrb(stack, 'a');
+			min_idx++;
+		}
+	}
+}
+
+/**
+ * @brief Pushes the smallest elements from stack_a to stack_b
+ *
+ * Finds the minimum element in stack_a, rotates it to the top,
+ * and pushes it to stack_b. Repeats this process for the specified count.
+ *
+ * @param stack_a Source stack
+ * @param stack_b Destination stack
+ * @param push_count Number of elements to push
+ */
+static void	push_min_elms(t_stack *stack_a, t_stack *stack_b, int push_count)
+{
+	int	min_idx;
+
+	while (push_count > 0)
+	{
+		min_idx = min_finder(stack_a);
+		if (min_idx <= stack_a->top / 2)
+			while (min_idx-- > 0)
+				ra_rb(stack_a, 'a');
+		else
+			while (min_idx++ < stack_a->top)
+				rra_rrb(stack_a, 'a');
+		pa_pb(stack_a, stack_b, 'b');
+		push_count--;
+	}
+}
+
+void	sort_5(t_stack *stack_a, t_stack *stack_b)
+{
+	int	push_counter;
+
+	if (is_sorted(stack_a))
+		return ;
+	if (stack_a->top <= 3)
+	{
+		sort_3(stack_a);
+		return ;
+	}
+	push_counter = stack_a->top - 3;
+	push_min_elements(stack_a, stack_b, push_counter);
+	sort_3(stack_a);
+	while (stack_b->top > 0)
+		pa_pb(stack_b, stack_a, 'a');
 }
