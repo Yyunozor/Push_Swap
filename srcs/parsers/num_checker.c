@@ -6,24 +6,25 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 20:29:53 by anpayot           #+#    #+#             */
-/*   Updated: 2025/04/20 11:35:03 by anpayot          ###   ########.fr       */
+/*   Updated: 2025/04/29 23:44:32 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
 /**
- * @brief Checks if a given string represents a valid number
+ * @brief Checks if a given string represents a valid integer
  * 
- * A valid number is defined as an optional '+' or '-' sign followed by 
- * one or more digits.
+ * A valid integer is defined as an optional '+' or '-' sign followed by 
+ * one or more digits, and the value must be within INT_MIN and INT_MAX.
  * 
  * @param str String to check
- * @return 1 if the string is a valid number, 0 otherwise
+ * @return 1 if the string is a valid integer, 0 otherwise
  */
-static int	is_valid_number(char *str)
+static int	is_valid_int(char *str)
 {
-	int	i;
+	int		i;
+	long	num;
 
 	i = 0;
 	if (str[i] == '-' || str[i] == '+')
@@ -36,21 +37,6 @@ static int	is_valid_number(char *str)
 			return (0);
 		i++;
 	}
-	return (1);
-}
-
-/**
- * @brief Checks if a given string represents a valid integer
- * 
- * @param str String to check
- * @return 1 if the string is a valid integer, 0 otherwise
- */
-static int	is_valid_int(char *str)
-{
-	long	num;
-
-	if (!is_valid_number(str))
-		return (0);
 	num = ft_atol(str);
 	return (num >= INT_MIN && num <= INT_MAX);
 }
