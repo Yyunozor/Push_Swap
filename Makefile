@@ -44,7 +44,10 @@ SRCS = $(SRCS_DIR)/main.c \
        $(PARSING_DIR)/num_checker.c \
        $(PARSING_DIR)/parse_args.c \
        $(PARSING_DIR)/parse_utils.c \
-       $(UTILS_DIR)/stack_utils.c
+       $(UTILS_DIR)/stack_utils.c \
+	   $(ALGORITHMS_DIR)/sort_small.c \
+	   $(ALGORITHMS_DIR)/sort_medium.c \
+	   $(ALGORITHMS_DIR)/sort_large.c \
 
 # Debug sources using wildcard for flexibility
 DEBUG_SRCS = $(wildcard $(DEBUG_DIR)/*.c)

@@ -6,7 +6,7 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 12:20:12 by anpayot           #+#    #+#             */
-/*   Updated: 2025/04/27 12:23:44 by anpayot          ###   ########.fr       */
+/*   Updated: 2025/04/27 16:08:30 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,8 @@ void	print_stack(t_stack *stack);
 int		is_sorted(t_stack *stack);
 
 // Sorting algos
-void	sort_3(t_stack *stack);
-void	sort_5(t_stack *stack_a, t_stack *stack_b);
-void	sort_medium(t_stack *stack_a, t_stack *stack_b);
-void	sort_large(t_stack *stack_a, t_stack *stack_b);
+void	sort_s(t_stack *stack);
+void	sort_m(t_stack *stack_a, t_stack *stack_b);
+void	sort_l(t_stack *stack_a, t_stack *stack_b);
 
 #endif
