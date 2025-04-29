@@ -6,7 +6,7 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:47:22 by anpayot           #+#    #+#             */
-/*   Updated: 2025/04/29 23:59:08 by anpayot          ###   ########.fr       */
+/*   Updated: 2025/04/30 00:05:17 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,11 @@ void	sort_3(t_stack *stack)
 		ra_rb(stack, 'a');
 	else if (first < second && second > third && first < third)
 		sa_sb(stack, 'a');
-	else if (first < second && second < third && first < third)
+	else if (first > second && second < third && first < third)
 	{
 		sa_sb(stack, 'a');
-		ra_rb(stack, 'a');
 	}
-	else if (first < second && second > third)
+	else if (first < second && second > third && first > third)
 		rra_rrb(stack, 'a');
 }
 
@@ -76,34 +75,6 @@ static int	min_finder(t_stack *stack)
 }
 
 /**
- * @brief Moves the minimum value to the top of the stack
- *
- * @param stack The stack to manipulate
- */
-static void	min_to_top(t_stack *stack)
-{
-	int	min_idx;
-
-	min_idx = min_finder(stack);
-	if (min_idx <= stack->top / 2)
-	{
-		while (min_idx > 0)
-		{
-			ra_rb(stack, 'a');
-			min_idx--;
-		}
-	}
-	else
-	{
-		while (min_idx < stack->top)
-		{
-			rra_rrb(stack, 'a');
-			min_idx++;
-		}
-	}
-}
-
-/**
  * @brief Pushes the smallest elements from stack_a to stack_b
  *
  * Finds the minimum element in stack_a, rotates it to the top,
@@ -113,7 +84,7 @@ static void	min_to_top(t_stack *stack)
  * @param stack_b Destination stack
  * @param push_count Number of elements to push
  */
-static void	push_min_elms(t_stack *stack_a, t_stack *stack_b, int push_count)
+static void	push_min_elms(t_stack *stack_a, t_stack *stack_b, int push_counter)
 {
 	int	min_idx;
 
@@ -121,11 +92,21 @@ static void	push_min_elms(t_stack *stack_a, t_stack *stack_b, int push_count)
 	{
 		min_idx = min_finder(stack_a);
 		if (min_idx <= stack_a->top / 2)
-			while (min_idx-- > 0)
+		{
+			while (min_idx > 0)
+			{
 				ra_rb(stack_a, 'a');
+				min_idx--;
+			}
+		}
 		else
-			while (min_idx++ < stack_a->top)
+		{
+			while (min_idx < stack_a->top)
+			{
 				rra_rrb(stack_a, 'a');
+				min_idx++;
+			}
+		}
 		pa_pb(stack_a, stack_b, 'b');
 		push_count--;
 	}
