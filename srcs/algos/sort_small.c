@@ -6,17 +6,16 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:47:22 by anpayot           #+#    #+#             */
-/*   Updated: 2025/04/30 00:05:17 by anpayot          ###   ########.fr       */
+/*   Updated: 2025/04/30 00:24:06 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../includes/push_swap.h"
+#include "../../includes/push_swap.h"
 
 /**
  * @file sort_small.c
  * @brief Functions to sort stacks with small number of elements
  */
-
 void	sort_3(t_stack *stack)
 {
 	int	first;
@@ -38,9 +37,7 @@ void	sort_3(t_stack *stack)
 	else if (first < second && second > third && first < third)
 		sa_sb(stack, 'a');
 	else if (first > second && second < third && first < third)
-	{
 		sa_sb(stack, 'a');
-	}
 	else if (first < second && second > third && first > third)
 		rra_rrb(stack, 'a');
 }
@@ -56,7 +53,7 @@ static int	min_finder(t_stack *stack)
 	int	i;
 	int	min_idx;
 	int	min_val;
-	
+
 	if (stack->top == 0)
 		return (-1);
 	min_val = stack->data[0];
@@ -84,7 +81,7 @@ static int	min_finder(t_stack *stack)
  * @param stack_b Destination stack
  * @param push_count Number of elements to push
  */
-static void	push_min_elms(t_stack *stack_a, t_stack *stack_b, int push_counter)
+static void	grande_sagouine(t_stack *stack_a, t_stack *stack_b, int push_count)
 {
 	int	min_idx;
 
@@ -124,7 +121,7 @@ void	sort_5(t_stack *stack_a, t_stack *stack_b)
 		return ;
 	}
 	push_counter = stack_a->top - 3;
-	push_min_elms(stack_a, stack_b, push_counter);
+	grande_sagouine(stack_a, stack_b, push_counter);
 	sort_3(stack_a);
 	while (stack_b->top > 0)
 		pa_pb(stack_b, stack_a, 'a');
