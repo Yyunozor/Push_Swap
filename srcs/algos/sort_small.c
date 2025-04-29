@@ -6,11 +6,16 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:47:22 by anpayot           #+#    #+#             */
-/*   Updated: 2025/04/29 23:33:29 by anpayot          ###   ########.fr       */
+/*   Updated: 2025/04/29 23:59:08 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/push_swap.h"
+# include "../../includes/push_swap.h"
+
+/**
+ * @file sort_small.c
+ * @brief Functions to sort stacks with small number of elements
+ */
 
 void	sort_3(t_stack *stack)
 {
@@ -52,7 +57,7 @@ static int	min_finder(t_stack *stack)
 	int	i;
 	int	min_idx;
 	int	min_val;
-
+	
 	if (stack->top == 0)
 		return (-1);
 	min_val = stack->data[0];
@@ -138,7 +143,7 @@ void	sort_5(t_stack *stack_a, t_stack *stack_b)
 		return ;
 	}
 	push_counter = stack_a->top - 3;
-	push_min_elements(stack_a, stack_b, push_counter);
+	push_min_elms(stack_a, stack_b, push_counter);
 	sort_3(stack_a);
 	while (stack_b->top > 0)
 		pa_pb(stack_b, stack_a, 'a');
