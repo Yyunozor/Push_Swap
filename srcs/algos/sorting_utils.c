@@ -6,9 +6,11 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 14:42:38 by anpayot           #+#    #+#             */
-/*   Updated: 2025/05/01 14:59:18 by anpayot          ###   ########.fr       */
+/*   Updated: 2025/05/02 11:31:50 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../../includes/push_swap.h"
 
 int	*copy_stack(t_stack *stack, int size)
 {
@@ -16,7 +18,7 @@ int	*copy_stack(t_stack *stack, int size)
 	int	i;
 
 	copy = (int *)malloc(sizeof(int) * size);
-	if(!copy)
+	if (!copy)
 		return (NULL);
 	i = 0;
 	while (i < size)
@@ -24,7 +26,7 @@ int	*copy_stack(t_stack *stack, int size)
 		copy[i] = stack->data[i];
 		i++;
 	}
-	return(copy);
+	return (copy);
 }
 
 int	min_finder(t_stack *stack)
@@ -32,15 +34,15 @@ int	min_finder(t_stack *stack)
 	int	i;
 	int	min_idx;
 	int	min_val;
-	
+
 	if (stack->top == 0)
 		return (-1);
 	min_val = stack->data[0];
 	min_idx = 0;
 	i = 1;
-	while (i < stack ->top)
+	while (i < stack->top)
 	{
-		if (stack->date[i] < min_val)
+		if (stack->data[i] < min_val)
 		{
 			min_val = stack->data[i];
 			min_idx = i;
@@ -88,43 +90,10 @@ void	min_to_top(t_stack *stack)
 	}
 	else
 	{
-		while (min_pos < stack->top)
+		while (min_idx < stack->top)
 		{
 			rra_rrb(stack, 'a');
 			min_idx++;
-		}
-	}
-}
-
-int	pos_finder(t_stack *stack, int value)
-{
-	int	i;
-	
-	i = 0;
-	while(i < stack->top)
-	{
-		if (stack->data[i] == value)
-			return (i);
-	}
-	return (-1);
-}
-
-void	move_to_top(t_stack *stack, int pos, char stack_id)
-{
-	if (pos <= stack->top / 2)
-	{
-		while (pos > 0)
-		{
-			ra_rb(stack, stack_id);
-			pos--;
-		}
-	}
-	else
-	{
-		while (pos >< stack->top)
-		{
-			rra_rrb(stack, stack_id);
-			pos++;
 		}
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 20:29:53 by anpayot           #+#    #+#             */
-/*   Updated: 2025/04/29 23:44:32 by anpayot          ###   ########.fr       */
+/*   Updated: 2025/05/02 11:47:21 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,24 +21,31 @@
  * @param str String to check
  * @return 1 if the string is a valid integer, 0 otherwise
  */
-static int	is_valid_int(char *str)
+int	is_valid_int(char *str)
 {
-	int		i;
-	long	num;
+	int		sign;
+	long	result;
 
-	i = 0;
-	if (str[i] == '-' || str[i] == '+')
-		i++;
-	if (!str[i])
-		return (0);
-	while (str[i])
+	sign = 1;
+	result = 0;
+	if (*str == '-')
 	{
-		if (!ft_isdigit(str[i]))
-			return (0);
-		i++;
+		sign = -1;
+		str++;
 	}
-	num = ft_atol(str);
-	return (num >= INT_MIN && num <= INT_MAX);
+	else if (*str == '+')
+		str++;
+	while (*str)
+	{
+		if (!ft_isdigit(*str))
+			return (0);
+		result = result * 10 + (*str - '0');
+		if ((sign == 1 && result > INT_MAX)
+			|| (sign == -1 && result * sign < INT_MIN))
+			return (0);
+		str++;
+	}
+	return (1);
 }
 
 /**

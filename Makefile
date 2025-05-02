@@ -6,7 +6,7 @@
 #    By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/01 10:00:00 by yyuno             #+#    #+#              #
-#    Updated: 2025/04/16 03:30:01 by anpayot          #+#    #+#              #
+#    Updated: 2025/05/02 11:50:00 by anpayot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ UTILS_DIR = $(SRCS_DIR)/utils
 OPERATORS_DIR = $(SRCS_DIR)/operators
 PARSING_DIR = $(SRCS_DIR)/parsers
 ALGORITHMS_DIR = $(SRCS_DIR)/algos
-DEBUG_DIR = $(SRCS_DIR)/debug
+DEBUG_DIR = debug
 
 # ===== EXTERNAL LIBRARIES =====
 PRINTF_DIR = ft_printf2
@@ -48,29 +48,29 @@ SRCS = $(SRCS_DIR)/main.c \
 	   $(ALGORITHMS_DIR)/sort_small.c \
 	   $(ALGORITHMS_DIR)/sort_medium.c \
 	   $(ALGORITHMS_DIR)/sort_large.c \
-
-# Debug sources using wildcard for flexibility
-DEBUG_SRCS = $(wildcard $(DEBUG_DIR)/*.c)
+	   $(ALGORITHMS_DIR)/sorting_utils.c \
+	   $(ALGORITHMS_DIR)/sorting_utils2.c
 
 # Object files derived from sources
 OBJS = $(SRCS:.c=.o)
-DEBUG_OBJS = $(DEBUG_SRCS:.c=.o)
 
 # ===== MAIN TARGETS =====
 all: $(NAME)
 
 $(NAME): ft_printf_lib $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) $(INCLUDES) $(LIBS) -o $(NAME)
-	echo -e "$(GREEN)✅ Push_swap compiled successfully!$(RESET)"
+	@echo "$(GREEN)✅ Push_swap compiled successfully!$(RESET)"
 
-debug: ft_printf_lib $(OBJS) $(DEBUG_OBJS)
-	$(CC) $(CFLAGS) $(OBJS) $(DEBUG_OBJS) $(INCLUDES) $(LIBS) -o $(NAME)_debug
-	echo -e "$(YELLOW)🔍 Debug version compiled$(RESET)"
+# ===== DEBUG TARGET =====
+debug:
+	@echo "$(YELLOW)🔍 Building debug tools...$(RESET)"
+	@make -C $(DEBUG_DIR)
+	@echo "$(GREEN)✅ Debug tools ready! Run ./debug/push_swap_debug$(RESET)"
 
 # ===== DEPENDENCIES =====
 # Use a clear target name to avoid confusion
 ft_printf_lib:
-	cd $(PRINTF_DIR) && make
+	@make -C $(PRINTF_DIR)
 
 # Pattern rule for object files
 %.o: %.c
@@ -78,30 +78,18 @@ ft_printf_lib:
 
 # ===== CLEANING =====
 clean:
-	cd $(PRINTF_DIR) && make clean
-	$(RM) $(OBJS) $(DEBUG_OBJS)
-	echo -e "$(BLUE)🧹 Object files cleaned$(RESET)"
+	@make -C $(PRINTF_DIR) clean
+	@make -C $(DEBUG_DIR) clean
+	$(RM) $(OBJS)
+	@echo "$(BLUE)🧹 Object files cleaned$(RESET)"
 
-fclean:
-	cd $(PRINTF_DIR) && make clean
-	$(RM) $(OBJS) $(DEBUG_OBJS)
-	echo -e "$(BLUE)🧹 Object files cleaned$(RESET)"
-	cd $(PRINTF_DIR) && make fclean
-	$(RM) $(NAME) $(NAME)_debug
-	echo -e "$(BLUE)🧹 Executables removed$(RESET)"
+fclean: clean
+	@make -C $(PRINTF_DIR) fclean
+	@make -C $(DEBUG_DIR) fclean
+	$(RM) $(NAME)
+	@echo "$(BLUE)🧹 Executables removed$(RESET)"
 
-re:
-	cd $(PRINTF_DIR) && make clean
-	$(RM) $(OBJS) $(DEBUG_OBJS)
-	echo -e "$(BLUE)🧹 Object files cleaned$(RESET)"
-	cd $(PRINTF_DIR) && make fclean
-	$(RM) $(NAME) $(NAME)_debug
-	echo -e "$(BLUE)🧹 Executables removed$(RESET)"
-	cd $(PRINTF_DIR) && make
-	$(foreach src,$(SRCS),\
-		$(CC) $(CFLAGS) $(INCLUDES) -c $(src) -o $(src:.c=.o);)
-	$(CC) $(CFLAGS) $(OBJS) $(INCLUDES) $(LIBS) -o $(NAME)
-	echo -e "$(GREEN)✅ Push_swap recompiled successfully!$(RESET)"
+re: fclean all
 
 # ===== PHONY TARGETS =====
 .PHONY: all clean fclean re debug ft_printf_lib

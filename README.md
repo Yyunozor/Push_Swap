@@ -196,5 +196,3 @@ push_swap/
   - Articles and tutorials on Radix Sort, Turk Algorithm, and other relevant strategies.
 
 ---
-
- 
