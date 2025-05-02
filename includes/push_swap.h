@@ -60,7 +60,7 @@ void	sort_large(t_stack *stack_a, t_stack *stack_b);
 int		*copy_stack(t_stack *stack, int size);
 int		min_finder(t_stack *stack);
 int		max_finder(t_stack *stack);
-void	min_to_top(t_stack *stack);
+void	min_to_top(t_stack *stack, char stack_id);
 void	max_to_top(t_stack *stack);
 int		find_position(t_stack *stack, int value);
 void	move_to_top(t_stack *stack, int pos, char stack_id);

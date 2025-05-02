@@ -6,7 +6,7 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 14:42:38 by anpayot           #+#    #+#             */
-/*   Updated: 2025/05/02 11:31:50 by anpayot          ###   ########.fr       */
+/*   Updated: 2025/05/02 14:26:46 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	max_finder(t_stack *stack)
 	return (max_idx);
 }
 
-void	min_to_top(t_stack *stack)
+void	min_to_top(t_stack *stack, char stack_id)
 {
 	int	min_idx;
 
@@ -84,7 +84,7 @@ void	min_to_top(t_stack *stack)
 	{
 		while (min_idx > 0)
 		{
-			ra_rb(stack, 'a');
+			ra_rb(stack, stack_id);
 			min_idx--;
 		}
 	}
@@ -92,7 +92,7 @@ void	min_to_top(t_stack *stack)
 	{
 		while (min_idx < stack->top)
 		{
-			rra_rrb(stack, 'a');
+			rra_rrb(stack, stack_id);
 			min_idx++;
 		}
 	}

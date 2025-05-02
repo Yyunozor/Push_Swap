@@ -6,7 +6,7 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 20:30:00 by anpayot           #+#    #+#             */
-/*   Updated: 2025/04/20 11:35:25 by anpayot          ###   ########.fr       */
+/*   Updated: 2025/05/02 14:26:46 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,11 +87,11 @@ t_stack	*load_stack(char **args, int total_count)
 	stack_a = stack_init(total_count);
 	if (!stack_a)
 		return (NULL);
-	i = total_count - 1;
-	while (i >= 0)
+	i = 0;
+	while (i < total_count)
 	{
 		stack_a->data[stack_a->top++] = ft_atol(args[i]);
-		i--;
+		i++;
 	}
 	return (stack_a);
 }
