@@ -6,28 +6,11 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:47:19 by anpayot           #+#    #+#             */
-/*   Updated: 2025/05/01 14:12:55 by anpayot          ###   ########.fr       */
+/*   Updated: 2025/05/01 14:49:22 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
-
-static int	*copy_stack(t_stack *stack, int size)
-{
-	int	*copy;
-	int	i;
-
-	copy = (int *)malloc(sizeof(int) * size);
-	if(!copy)
-		return (NULL);
-	i = 0;
-	while (i < size)
-	{
-		copy[i] = stack->data[i];
-		i++;
-	}
-	return(copy);
-}
 
 static void	bubble_sort_arr(int *arr, int size)
 {
