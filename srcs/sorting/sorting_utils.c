@@ -4,24 +4,13 @@
 /*   sorting_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/01 14:42:38 by anpayot           #+#    #+#             */
+/*                                                +#+#+#+#+#+   anpayot          #+#    #+#             */
 /*   Updated: 2025/05/09 01:10:08 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
-/**
- * @brief Copies the stack data to a new integer array
- * 
- * This function allocates memory for a new array and copies
- * the data from the stack to this array.
- * 
- * @param stack The stack to copy from
- * @param size The number of elements to copy
- * @return A pointer to the newly allocated array
- */
 int	*copy_stack(t_stack *stack, int size)
 {
 	int	*copy;
@@ -39,15 +28,6 @@ int	*copy_stack(t_stack *stack, int size)
 	return (copy);
 }
 
-/**
- * @brief Finds the minimum value in a stack
- * 
- * This function iterates through the stack to find the
- * position of the minimum value.
- * 
- * @param stack The stack to search
- * @return The position of the minimum value
- */
 int	min_finder(t_stack *stack)
 {
 	int	i;
@@ -71,15 +51,6 @@ int	min_finder(t_stack *stack)
 	return (min_pos);
 }
 
-/**
- * @brief Finds the maximum value in a stack
- * 
- * This function iterates through the stack to find the
- * position of the maximum value.
- * 
- * @param stack The stack to search
- * @return The position of the maximum value
- */
 int	max_finder(t_stack *stack)
 {
 	int	i;
@@ -103,15 +74,6 @@ int	max_finder(t_stack *stack)
 	return (max_pos);
 }
 
-/**
- * @brief Moves the minimum value to the top of the stack
- * 
- * This function finds the minimum value in the stack and
- * performs rotation operations to bring it to the top position.
- * 
- * @param stack The stack to manipulate
- * @param stack_id Identifier for the stack ('a' or 'b')
- */
 void	min_to_top(t_stack *stack, char stack_id)
 {
 	int	min_pos;
@@ -122,14 +84,6 @@ void	min_to_top(t_stack *stack, char stack_id)
 	move_to_top(stack, min_pos, stack_id);
 }
 
-/**
- * @brief Moves the maximum value to the top of the stack
- * 
- * This function finds the maximum value in the stack and
- * performs rotation operations to bring it to the top position.
- * 
- * @param stack The stack to manipulate
- */
 void	max_to_top(t_stack *stack)
 {
 	int	max_pos;

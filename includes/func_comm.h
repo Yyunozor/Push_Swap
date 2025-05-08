@@ -347,6 +347,61 @@ void	move_to_top(t_stack *stack, int pos, char stack_id);
 void	bubble_sort_arr(int *arr, int size);
 
 /**
+ * @brief Copies the stack data to a new integer array
+ * 
+ * This function allocates memory for a new array and copies
+ * the data from the stack to this array.
+ * 
+ * @param stack The stack to copy from
+ * @param size The number of elements to copy
+ * @return A pointer to the newly allocated array
+ */
+int	*copy_stack(t_stack *stack, int size);
+
+/**
+ * @brief Finds the minimum value in a stack
+ * 
+ * This function iterates through the stack to find the
+ * position of the minimum value.
+ * 
+ * @param stack The stack to search
+ * @return The position of the minimum value
+ */
+int	min_finder(t_stack *stack);
+
+/**
+ * @brief Finds the maximum value in a stack
+ * 
+ * This function iterates through the stack to find the
+ * position of the maximum value.
+ * 
+ * @param stack The stack to search
+ * @return The position of the maximum value
+ */
+int	max_finder(t_stack *stack);
+
+/**
+ * @brief Moves the minimum value to the top of the stack
+ * 
+ * This function finds the minimum value in the stack and
+ * performs rotation operations to bring it to the top position.
+ * 
+ * @param stack The stack to manipulate
+ * @param stack_id Identifier for the stack ('a' or 'b')
+ */
+void	min_to_top(t_stack *stack, char stack_id);
+
+/**
+ * @brief Moves the maximum value to the top of the stack
+ * 
+ * This function finds the maximum value in the stack and
+ * performs rotation operations to bring it to the top position.
+ * 
+ * @param stack The stack to manipulate
+ */
+void	max_to_top(t_stack *stack);
+
+/**
  * @brief Checks if a string represents a valid integer
  * 
  * Verifies that a string contains only digits and an optional sign,
@@ -399,5 +454,16 @@ int	count_bits(int num);
  */
 void	radix_sort_bits(t_stack *stack_a, t_stack *stack_b,
 						int size, int max_bits);
+
+/**
+ * @brief Performs bubble sort on an integer array
+ * 
+ * This function sorts an array of integers using the bubble sort algorithm.
+ * The result is arranged in ascending order.
+ * 
+ * @param arr The array to sort
+ * @param size The size of the array
+ */
+void	bubble_sort_arr(int *arr, int size);
 
 #endif

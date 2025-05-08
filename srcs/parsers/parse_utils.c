@@ -6,7 +6,7 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 20:30:00 by anpayot           #+#    #+#             */
-/*   Updated: 2025/05/02 14:26:46 by anpayot          ###   ########.fr       */
+/*   Updated: 2025/05/09 01:53:19 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	count_args(int ac, char **av)
 	return (total);
 }
 
-void	free_string_array(char **arr)
+void	free_str_array(char **arr)
 {
 	int	i;
 

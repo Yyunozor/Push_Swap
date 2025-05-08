@@ -6,7 +6,7 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 03:15:30 by anpayot           #+#    #+#             */
-/*   Updated: 2025/05/09 01:15:23 by anpayot          ###   ########.fr       */
+/*   Updated: 2025/05/09 01:57:29 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
  * @param count Pointer to store the count of arguments after splitting
  * @return Array of strings representing split arguments, or NULL on error
  */
-static char	**handle_single_arg(char *arg, int *count)
+static char	**split_strarg(char *arg, int *count)
 {
 	char	**args;
 
@@ -44,13 +44,13 @@ static char	**handle_single_arg(char *arg, int *count)
  * @param total_count Pointer to store the total count of arguments
  * @return Array of argument strings, or NULL on error
  */
-static char	**get_arguments(int ac, char **av, int *total_count)
+static char	**extract_args(int ac, char **av, int *total_count)
 {
 	char	**args;
 
 	if (ac == 2 && ft_strchr(av[1], ' '))
 	{
-		args = handle_single_arg(av[1], total_count);
+		args = split_strarg(av[1], total_count);
 		if (!args)
 			return (NULL);
 	}
@@ -72,10 +72,10 @@ static char	**get_arguments(int ac, char **av, int *total_count)
  * @param stack Stack to return
  * @return The input stack pointer
  */
-static t_stack	*cleanup_and_return(int ac, char **args, t_stack *stack)
+static t_stack	*freeturn(int ac, char **args, t_stack *stack)
 {
 	if (ac == 2 && args != NULL)
-		free_string_array(args);
+		free_str_array(args);
 	return (stack);
 }
 
@@ -89,19 +89,19 @@ t_stack	*parse_args(int ac, char **av)
 	if (ac < 2)
 		return (NULL);
 	is_single_arg = (ac == 2 && ft_strchr(av[1], ' '));
-	args = get_arguments(ac, av, &total_count);
+	args = extract_args(ac, av, &total_count);
 	if (!args)
 		return (NULL);
 	if (!num_checker(total_count, args))
 	{
 		if (is_single_arg)
-			return (cleanup_and_return(ac, args, NULL));
+			return (freeturn(ac, args, NULL));
 		else
-			return (cleanup_and_return(ac, NULL, NULL));
+			return (freeturn(ac, NULL, NULL));
 	}
 	stack = load_stack(args, total_count);
 	if (is_single_arg)
-		return (cleanup_and_return(ac, args, stack));
+		return (freeturn(ac, args, stack));
 	else
-		return (cleanup_and_return(ac, NULL, stack));
+		return (freeturn(ac, NULL, stack));
 }
