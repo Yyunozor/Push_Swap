@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/14 18:32:03 by anpayot           #+#    #+#             */
-/*   Updated: 2025/04/16 19:58:08 by anpayot          ###   ########.fr       */
+/*   Created: 2025/04/14 19:20:16 by anpayot           #+#    #+#             */
+/*   Updated: 2025/05/08 12:34:52 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 /**
  * @brief Swaps the first two elements of a stack
  * 
- * This function takes a stack and swaps its first two elements.
- * If the stack has less than 2 elements, nothing happens.
+ * This function swaps the first two elements at the top of the stack.
+ * If the stack has fewer than 2 elements, no operation is performed.
  * 
- * @param stack The stack to manipulate
+ * @param stack The stack to perform the swap on
  * @return int 1 if the swap was performed, 0 otherwise
  */
 static int	perform_swap(t_stack *stack)

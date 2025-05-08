@@ -6,7 +6,7 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 12:20:19 by anpayot           #+#    #+#             */
-/*   Updated: 2025/04/29 23:32:03 by anpayot          ###   ########.fr       */
+/*   Updated: 2025/05/08 12:36:47 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "push_swap.h"
 
 /**
- * @file push_swap_doc.h
+ * @file func_comm.h
  * @brief Documentation-only header file for Push_Swap project
  * 
  * This file contains detailed Doxygen documentation for all functions in the
@@ -266,5 +266,106 @@ void	sort_3(t_stack *stack);
  * @param stack_b The auxiliary stack for the sorting process
  */
 void	sort_5(t_stack *stack_a, t_stack *stack_b);
+
+/**
+ * @brief Sorts a medium-sized stack (typically 6-100 elements)
+ * 
+ * Implements a more complex algorithm for medium-sized stacks, using a
+ * chunk-based strategy. The algorithm divides the elements into chunks
+ * based on their sorted positions, pushing them to stack_b in order,
+ * and then pushes them back to stack_a in sorted order.
+ *
+ * @param stack_a The main stack to be sorted
+ * @param stack_b The auxiliary stack for the sorting process
+ */
+void	sort_medium(t_stack *stack_a, t_stack *stack_b);
+
+/**
+ * @brief Sorts a large stack (typically more than 100 elements)
+ * 
+ * Implements an efficient radix sort algorithm for large stacks,
+ * which involves normalizing the values and then sorting them
+ * by binary representation. This approach provides consistent
+ * and predictable performance for large datasets.
+ *
+ * @param stack_a The main stack to be sorted
+ * @param stack_b The auxiliary stack for the sorting process
+ */
+void	sort_large(t_stack *stack_a, t_stack *stack_b);
+
+/**
+ * @brief Creates a copy of a stack's data array
+ * 
+ * Allocates memory for a new array and copies the data from the stack
+ * into it. This is primarily used for operations that need to 
+ * manipulate a copy of the stack's data rather than the stack itself.
+ *
+ * @param stack The stack to copy from
+ * @param size The number of elements to copy
+ * @return A pointer to the newly allocated array, or NULL if allocation fails
+ */
+int	*copy_stack(t_stack *stack, int size);
+
+/**
+ * @brief Finds the position of a specific value in a stack
+ * 
+ * Searches through the stack to locate a specific value and returns
+ * its position in the stack. This is used for targeted operations
+ * that need to know where a specific element is located.
+ *
+ * @param stack The stack to search in
+ * @param value The value to find
+ * @return The position of the value, or -1 if not found
+ */
+int	find_position(t_stack *stack, int value);
+
+/**
+ * @brief Moves an element at a specific position to the top of the stack
+ * 
+ * Uses rotation operations (ra/rb or rra/rrb) to move an element
+ * at a specific position to the top of the stack using the most
+ * efficient sequence of operations.
+ *
+ * @param stack The stack to manipulate
+ * @param pos The position of the element to move
+ * @param stack_id Identifier for the stack ('a' or 'b')
+ */
+void	move_to_top(t_stack *stack, int pos, char stack_id);
+
+/**
+ * @brief Performs a bubble sort on an integer array
+ * 
+ * This utility function is used for sorting operations that need
+ * to work with a sorted copy of the stack data, particularly
+ * for the normalization process in the radix sort algorithm.
+ *
+ * @param arr The array to sort
+ * @param size The size of the array
+ */
+void	bubble_sort_arr(int *arr, int size);
+
+/**
+ * @brief Checks if a string represents a valid integer
+ * 
+ * Verifies that a string contains only digits and an optional sign,
+ * with no other characters, and that the value fits within the 
+ * allowed integer range.
+ *
+ * @param str The string to validate
+ * @return 1 if the string is a valid integer, 0 otherwise
+ */
+int	is_valid_int(char *str);
+
+/**
+ * @brief Checks for duplicate values in an array
+ * 
+ * Verifies that all values in the array are unique, which is a
+ * requirement for the push_swap problem.
+ *
+ * @param arr The array to check
+ * @param size The size of the array
+ * @return 1 if duplicates are found, 0 if all values are unique
+ */
+int	has_duplicates(int *arr, int size);
 
 #endif

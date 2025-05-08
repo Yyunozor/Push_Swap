@@ -6,7 +6,7 @@
 #    By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/01 10:00:00 by yyuno             #+#    #+#              #
-#    Updated: 2025/05/02 11:50:00 by anpayot          ###   ########.fr        #
+#    Updated: 2025/05/08 12:34:52 by anpayot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,31 +61,34 @@ $(NAME): ft_printf_lib $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) $(INCLUDES) $(LIBS) -o $(NAME)
 	@echo "$(GREEN)✅ Push_swap compiled successfully!$(RESET)"
 
-# ===== DEBUG TARGET =====
-debug:
-	@echo "$(YELLOW)🔍 Building debug tools...$(RESET)"
-	@make -C $(DEBUG_DIR)
-	@echo "$(GREEN)✅ Debug tools ready! Run ./debug/push_swap_debug$(RESET)"
+# # ===== DEBUG TARGET =====
+# debug:
+# 	@echo "$(YELLOW)🔍 Building debug tools...$(RESET)"
+# 	@make -C $(DEBUG_DIR)
+# 	@echo "$(GREEN)✅ Debug tools ready! Run ./debug/push_swap_debug$(RESET)"
 
 # ===== DEPENDENCIES =====
-# Use a clear target name to avoid confusion
 ft_printf_lib:
 	@make -C $(PRINTF_DIR)
 
-# Pattern rule for object files
+# rule for object files
 %.o: %.c
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 # ===== CLEANING =====
 clean:
 	@make -C $(PRINTF_DIR) clean
-	@make -C $(DEBUG_DIR) clean
+	@if [ -d "$(DEBUG_DIR)" ] && [ -f "$(DEBUG_DIR)/Makefile" ]; then \
+		make -C $(DEBUG_DIR) clean; \
+	fi
 	$(RM) $(OBJS)
 	@echo "$(BLUE)🧹 Object files cleaned$(RESET)"
 
 fclean: clean
 	@make -C $(PRINTF_DIR) fclean
-	@make -C $(DEBUG_DIR) fclean
+	@if [ -d "$(DEBUG_DIR)" ] && [ -f "$(DEBUG_DIR)/Makefile" ]; then \
+		make -C $(DEBUG_DIR) fclean; \
+	fi
 	$(RM) $(NAME)
 	@echo "$(BLUE)🧹 Executables removed$(RESET)"
 

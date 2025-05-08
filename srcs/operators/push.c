@@ -6,44 +6,46 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 19:20:56 by anpayot           #+#    #+#             */
-/*   Updated: 2025/04/16 20:00:01 by anpayot          ###   ########.fr       */
+/*   Updated: 2025/05/08 12:34:52 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
 /**
- * @brief Pushes the first element of one stack to another stack
+ * @brief Pushes the top element from one stack to another
  * 
- * This function takes the first element of the source stack and places it
- * at the top of the destination stack. If the source stack is empty,
- * nothing happens.
+ * This function takes the top element from the source stack and
+ * pushes it onto the top of the destination stack. If the source
+ * stack is empty, no operation is performed.
  * 
- * @param src Source stack
- * @param dest Destination stack
+ * @param stack_src Source stack to push from
+ * @param stack_dst Destination stack to push to
  * @return int 1 if the push was performed, 0 otherwise
  */
-static int	perform_push(t_stack *src, t_stack *dest)
+static int	perform_push(t_stack *stack_src, t_stack *stack_dst)
 {
+	int	top_val;
 	int	i;
 
-	if (src->top == 0)
+	if (stack_src->top <= 0)
 		return (0);
-	i = dest->top;
-	while (i > 0)
-	{
-		dest->data[i] = dest->data[i - 1];
-		i--;
-	}
-	dest->data[0] = src->data[0];
-	dest->top++;
+	top_val = stack_src->data[0];
 	i = 0;
-	while (i < src->top - 1)
+	while (i < stack_src->top - 1)
 	{
-		src->data[i] = src->data[i + 1];
+		stack_src->data[i] = stack_src->data[i + 1];
 		i++;
 	}
-	src->top--;
+	stack_src->top--;
+	i = stack_dst->top;
+	while (i > 0)
+	{
+		stack_dst->data[i] = stack_dst->data[i - 1];
+		i--;
+	}
+	stack_dst->data[0] = top_val;
+	stack_dst->top++;
 	return (1);
 }
 

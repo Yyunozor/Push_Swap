@@ -6,12 +6,23 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 16:30:22 by anpayot           #+#    #+#             */
-/*   Updated: 2025/05/02 11:31:50 by anpayot          ###   ########.fr       */
+/*   Updated: 2025/05/08 12:34:52 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
+/**
+ * @brief Normalizes the stack values to their position in sorted order
+ *
+ * This function replaces each value in the stack with its index in the sorted array.
+ * For example, the smallest number becomes 0, the second smallest becomes 1, etc.
+ * This normalization simplifies the radix sort process by working with sequential
+ * indices instead of potentially large or negative numbers.
+ *
+ * @param stack The stack to normalize
+ * @param size The size of the stack
+ */
 static void	normalize_stack(t_stack *stack, int size)
 {
 	int	*copy;
@@ -47,6 +58,16 @@ static void	normalize_stack(t_stack *stack, int size)
 	free(sorted);
 }
 
+/**
+ * @brief Counts the number of bits needed to represent a given number
+ *
+ * This function determines how many binary digits are needed to represent
+ * the given number, which is essential for determining how many passes
+ * the radix sort algorithm needs to make.
+ *
+ * @param max The maximum value to represent
+ * @return The number of bits required
+ */
 static int	count_bits(int max)
 {
 	int	bits;
@@ -60,6 +81,19 @@ static int	count_bits(int max)
 	return (bits);
 }
 
+/**
+ * @brief Performs radix sort on the stack using bit operations
+ *
+ * This function implements the radix sort algorithm by examining each bit position
+ * (from least significant to most significant) for each number. Numbers with a 0 in
+ * the current bit position are pushed to stack B, and then all numbers are pushed
+ * back to stack A before moving to the next bit position.
+ *
+ * @param stack_a The main stack to sort
+ * @param stack_b The helper stack
+ * @param size The size of the stack
+ * @param bits The number of bits to process
+ */
 static void	radix_sort_bits(t_stack *stack_a, t_stack *stack_b, int size, int bits)
 {
 	int	i;

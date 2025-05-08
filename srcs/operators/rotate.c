@@ -5,15 +5,15 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/14 19:21:06 by anpayot           #+#    #+#             */
-/*   Updated: 2025/04/16 19:58:51 by anpayot          ###   ########.fr       */
+/*   Created: 2025/04/14 19:20:44 by anpayot           #+#    #+#             */
+/*   Updated: 2025/05/08 12:34:52 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
 /**
- * @brief Rotates a stack upwards
+ * @brief Performs a rotation (upwards) on a stack
  * 
  * This function moves the first element of a stack to the end.
  * If the stack has less than 2 elements, nothing happens.
