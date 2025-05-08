@@ -66,9 +66,9 @@ int		find_position(t_stack *stack, int value);
 void	move_to_top(t_stack *stack, int pos, char stack_id);
 void	bubble_sort_arr(int *arr, int size);
 
-// Debug Utilities
-int		debug_is_sorted(t_stack *stack);
-t_stack	*create_random_stack(int size, int min, int max);
-void	generate_test_arguments(int size, int min, int max);
+// // Debug Utilities
+// int		debug_is_sorted(t_stack *stack);
+// t_stack	*create_random_stack(int size, int min, int max);
+// void	generate_test_arguments(int size, int min, int max);
 
 #endif

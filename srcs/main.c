@@ -6,7 +6,7 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 15:01:12 by anpayot           #+#    #+#             */
-/*   Updated: 2025/05/05 14:23:30 by anpayot          ###   ########.fr       */
+/*   Updated: 2025/05/08 11:48:46 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
  * @param exit_code Exit code
  * @return int Exit code
  */
-static int	clean_exit(t_stack *stack_a, t_stack *stack_b, int exit_code)
+static int	cleanex(t_stack *stack_a, t_stack *stack_b, int exit_code)
 {
 	if (stack_a)
 		free_stack(&stack_a);
@@ -35,7 +35,7 @@ static int	clean_exit(t_stack *stack_a, t_stack *stack_b, int exit_code)
  * @param stack_a Stack to sort
  * @param stack_b Helper stack
  */
-static void	select_sort_algorithm(t_stack *stack_a, t_stack *stack_b)
+static void	sorting_selector(t_stack *stack_a, t_stack *stack_b)
 {
 	int	size;
 
@@ -65,16 +65,14 @@ int	main(int argc, char **argv)
 	}
 	
 	if (is_sorted(stack_a))
-		return (clean_exit(stack_a, NULL, 0));
+		return (cleanex(stack_a, NULL, 0));
 	stack_b = stack_init(stack_a->capacity);
 	if (!stack_b)
 	{
 		ft_printf("Error\n");
-		return (clean_exit(stack_a, NULL, 1));
+		return (cleanex(stack_a, NULL, 1));
 	}
-	select_sort_algorithm(stack_a, stack_b);
+	sorting_selector(stack_a, stack_b);
 	
-	return (clean_exit(stack_a, stack_b, 0));
+	return (cleanex(stack_a, stack_b, 0));
 }
-
-
