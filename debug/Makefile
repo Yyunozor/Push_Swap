@@ -6,7 +6,7 @@
 #    By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/02 15:40:21 by anpayot           #+#    #+#              #
-#    Updated: 2025/05/02 11:47:21 by anpayot          ###   ########.fr        #
+#    Updated: 2025/05/05 14:35:56 by anpayot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,7 +58,7 @@ YELLOW = \033[33m
 BLUE = \033[34m
 
 # Rules
-all: $(NAME)
+all: $(NAME) test_large
 
 $(NAME): $(PRINTF) $(OBJS)
 	@echo "$(YELLOW)Linking $(NAME)...$(RESET)"
@@ -83,5 +83,11 @@ fclean: clean
 	@make -C $(PRINTF_DIR) fclean
 
 re: fclean all
+
+# Add test_large target
+test_large: test_large.c
+	@echo "$(YELLOW)Compiling test_large utility...$(RESET)"
+	@$(CC) $(CFLAGS) $(INCLUDES) test_large.c -o test_large $(PRINTF)
+	@echo "$(GREEN)✅ test_large utility created!$(RESET)"
 
 .PHONY: all clean fclean re

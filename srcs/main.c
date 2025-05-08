@@ -6,7 +6,7 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 15:01:12 by anpayot           #+#    #+#             */
-/*   Updated: 2025/05/02 14:26:46 by anpayot          ###   ########.fr       */
+/*   Updated: 2025/05/05 14:23:30 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,21 +50,6 @@ static void	select_sort_algorithm(t_stack *stack_a, t_stack *stack_b)
 		sort_large(stack_a, stack_b);
 }
 
-// Debug function to print the stack contents
-static void print_debug_stack(t_stack *stack, char *name)
-{
-    int i;
-    
-    ft_printf("Stack %s contents (top to bottom): ", name);
-    i = 0;
-    while (i < stack->top)
-    {
-        ft_printf("%d ", stack->data[i]);
-        i++;
-    }
-    ft_printf("\n");
-}
-
 int	main(int argc, char **argv)
 {
 	t_stack	*stack_a;
@@ -79,9 +64,6 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	
-	// DEBUG: Print stack contents after initialization
-	print_debug_stack(stack_a, "A");
-	
 	if (is_sorted(stack_a))
 		return (clean_exit(stack_a, NULL, 0));
 	stack_b = stack_init(stack_a->capacity);
@@ -91,9 +73,6 @@ int	main(int argc, char **argv)
 		return (clean_exit(stack_a, NULL, 1));
 	}
 	select_sort_algorithm(stack_a, stack_b);
-	
-	// DEBUG: Print stack contents after sorting
-	print_debug_stack(stack_a, "A (after sorting)");
 	
 	return (clean_exit(stack_a, stack_b, 0));
 }
