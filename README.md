@@ -1,198 +1,181 @@
-# Push_Swap Project Roadmap
+# Push_Swap
 
-## Overview
+A highly efficient sorting program that arranges integers using two stacks with a limited set of operations.
+
+![Push_Swap visualization](https://via.placeholder.com/800x400?text=Push_Swap+Visualization)
+
+## Table of Contents
+
+- [Introduction](#introduction)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Stack Operations](#stack-operations)
+- [Algorithm Overview](#algorithm-overview)
+  - [Small Set Sorting](#small-set-sorting)
+  - [Medium Set Sorting](#medium-set-sorting)
+  - [Large Set Sorting](#large-set-sorting)
+- [Performance](#performance)
+- [Debugging Tools](#debugging-tools)
+- [Project Structure](#project-structure)
+
+## Introduction
+
+Push_Swap is a sorting algorithm project that uses two stacks (Stack A and Stack B) and a limited set of operations to sort a collection of integers. The goal is to sort the integers in Stack A in ascending order using the minimum number of operations.
+
+This project demonstrates skills in:
+- Algorithm design and optimization
+- Data structure implementation
+- Efficient memory management
+- Problem-solving with constraints
+
+## Installation
+
+Clone the repository and compile the program:
+
+```bash
+git clone <repository-url>
+cd push_swap
+make
+```
+
+This will create the `push_swap` executable.
+
+## Usage
+
+### Basic Usage
+
+```bash
+./push_swap <integers>
+```
+
+Example:
+```bash
+./push_swap 5 2 3 1 4
+```
+
+Output will be a series of operations (like `ra`, `pb`, `sa`, etc.) that, when applied, will sort the given integers.
+
+### Advanced Usage
+
+You can count the number of operations with:
+
+```bash
+./push_swap 5 2 3 1 4 | wc -l
+```
+
+To verify that the operations correctly sort the stack:
+
+```bash
+./push_swap 5 2 3 1 4 | ./checker_Mac 5 2 3 1 4
+```
+
+The checker will output `OK` if the operations correctly sort the stack, and `KO` otherwise.
+
+### Input Formats
+
+The program accepts integers in various formats:
+- As separate arguments: `./push_swap 5 2 3 1 4`
+- As a string: `./push_swap "5 2 3 1 4"`
+- Mixed format: `./push_swap 5 "2 3" 1 4`
+
+## Stack Operations
+
+| Operation | Description |
+|-----------|-------------|
+| `sa` | Swap the first two elements of Stack A |
+| `sb` | Swap the first two elements of Stack B |
+| `ss` | Perform `sa` and `sb` simultaneously |
+| `pa` | Push the top element from Stack B to Stack A |
+| `pb` | Push the top element from Stack A to Stack B |
+| `ra` | Rotate Stack A (move the top element to the bottom) |
+| `rb` | Rotate Stack B (move the top element to the bottom) |
+| `rr` | Perform `ra` and `rb` simultaneously |
+| `rra` | Reverse rotate Stack A (move the bottom element to the top) |
+| `rrb` | Reverse rotate Stack B (move the bottom element to the top) |
+| `rrr` | Perform `rra` and `rrb` simultaneously |
+
+## Algorithm Overview
+
+The sorting approach varies based on the number of elements to be sorted:
+
+### Small Set Sorting
+
+For 2-5 elements, custom algorithms are used to minimize operations:
+
+- **2 elements**: Simple swap if needed (1 operation)
+- **3 elements**: Optimal fixed sequence based on the arrangement (2-3 operations)
+- **5 elements**: Extract the minimum values to Stack B and then sort Stack A (up to 12 operations)
+
+### Medium Set Sorting
+
+For 6-100 elements, the algorithm employs a chunking strategy:
+
+1. Divide the input range into chunks
+2. Move elements from each chunk to Stack B in order
+3. Move elements back to Stack A in the correct final position
+4. Optimize by calculating the shortest path for rotations
+
+### Large Set Sorting
+
+For large datasets (100+ elements), the algorithm uses a modified Radix Sort approach:
+
+1. Normalize the input values to start from 0
+2. Sort by each bit position (binary radix sort)
+3. For each bit position:
+   - If the bit is 0, move to Stack B
+   - If the bit is 1, keep in Stack A
+4. Once all elements are processed for a bit position, move all elements back to Stack A
+5. Repeat for each bit position
+
+## Performance
+
+| Input Size | Maximum Operations | Push_Swap Actual |
+|------------|-------------------|-----------------|
+| 3          | 3                 | 2-3             |
+| 5          | 12                | 8-12            |
+| 100        | 1500              | ~700            |
+| 500        | 11500             | ~5500           |
+
+## Debugging Tools
+
+The project includes a debug directory with tools to help visualize and test the sorting process:
+
+```bash
+# Build debug tools
+make debug
+
+# Test specific algorithms
+./debug/push_swap_debug sort_3
+./debug/push_swap_debug sort_5
+./debug/push_swap_debug sort_medium
+./debug/push_swap_debug sort_large
+
+# Generate random test cases
+./debug/push_swap_debug generate
+```
+
+For more details on the debugging tools, see the [Debug Documentation](debug/Doc_debug.md).
 
 ## Project Structure
+
 ```
 push_swap/
 ├── includes/
-│   └── push_swap.h              # Main header with all declarations and structures
-├── ft_printf2                   # Your custom libft and ft_printf functions
-│   ├── libft 
-│   │   ├── ft_atoi.c
-│   │   ├── ft_strlen.c
-│   │   ├── ft_isdigit.c
-│   │   ├── ft_putstr_fd.c
-│   │   └── ...
-│   └── ... (ft_printf and other related files)
-├── src/
-│   ├── main.c                   # Entry point, argument handling
-│   ├── parsers/
-│   │   ├── num_checker.c        # Check for valid integers
-│   │   ├── parse_args.c         # Process command-line args
-│   │   └── parse_utils.c        # Some utility functions for parsing
-│   ├── operations/
-│   │   ├── push.c               # pa, pb operations
-│   │   ├── swap.c               # sa, sb, ss operations
-│   │   ├── rotate.c             # ra, rb, rr operations
-│   │   └── reverse_rotate.c     # rra, rrb, rrr operations
-│   ├── algorithms/
-│   │   ├── sort_s.c             # Logic for sorting ≤5 numbers
-│   │   ├── sort_m.c             # For larger datasets
-│   │   └── sort_l.c             # Alternative sorting strategy
-│   ├── utils/
-│   │   ├── stack_utils.c        # Stack creation, deletion, manipulation
-│   │   └── ___????              # Other functions is it necessary
-│   └── debug/
-│       └──                      # /////
-├── obj/                         # Not used for the moment
+│   ├── push_swap.h      # Main header with declarations and structures
+│   ├── func_comm.h      # Function documentation header
+│   └── stack.h          # Stack data structure definitions
+├── srcs/
+│   ├── main.c           # Entry point, argument handling
+│   ├── parsers/         # Input validation and parsing
+│   ├── operators/       # Stack operations implementation
+│   ├── algos/           # Sorting algorithms
+│   └── utils/           # Utility functions
+├── ft_printf2/          # Custom printf library
+├── debug/               # Debugging and visualization tools
 ├── Makefile
 └── README.md
 ```
 
 ---
 
-## Project Requirements
-
-- **Sorting Mechanism:** Utilize two stacks (A and B) to sort integers.
-- **Allowed Operations:** `sa`, `sb`, `ss`, `pa`, `pb`, `ra`, `rb`, `rr`, `rra`, `rrb`, `rrr`.
-- **Efficiency Goal:** Output the minimal sequence of sorting instructions.
-- **Error Handling:** Properly manage errors such as non-integers, duplicates, and out-of-range values.
-- **Code Standards:** Ensure compliance with the 42 Norm (no memory leaks, global variables, or segmentation faults).
-
----
-
-## Daily Roadmap
-
-### Day 1: Setup & Planning:
-
-- **Understand Project Scope:**
-  - Thoroughly read the project subject to grasp rules and constraints.
-- **Select Data Structures:**
-  - Choose between arrays and linked lists for stack implementation. Arrays offer faster access times, while linked lists provide dynamic sizing.
-- **Initialize Development Environment:**
-  - Set up a Git repository with an appropriate `.gitignore` file.
-  - Create a Makefile to compile the project with `-Wall -Wextra -Werror` flags.
-
-### Day 2: Stack Operations Implementation
-
-- **Develop Core Operations:**
-  - Implement all stack operations (`sa`, `sb`, `ss`, `pa`, `pb`, `ra`, `rb`, `rr`, `rra`, `rrb`, `rrr`) ensuring they function correctly.
-- **Edge Case Handling:**
-  - Test operations with edge cases, such as empty stacks or stacks with a single element.
-
-### Day 3: Input Parsing & Error Management
-
-- **Argument Parsing:**
-  - Handle command-line arguments, including cases where numbers are provided as a single string.
-- **Validation:**
-  - Detect and manage errors like invalid inputs, duplicates, and numbers outside the acceptable range.
-- **Stack Initialization:**
-  - Populate Stack A with validated input values.
-
-### Day 4: Small Set Sorting (≤5 elements)
-
-- **Implement Efficient Sorting:**
-  - Develop optimal sorting algorithms for small datasets:
-    - **3 Elements:** Sort using minimal moves (2-3 operations).
-    - **4-5 Elements:** Extend logic to handle up to 5 elements efficiently (up to 12 operations).
-- **Testing:**
-  - Conduct extensive tests to ensure correctness and minimal operation count.
-
-### Days 5–7: Large Set Sorting Strategies
-
-#### Day 5: Radix Sort Implementation
-
-- **Normalization:**
-  - Map input numbers to a continuous range starting from zero to simplify sorting.
-- **Bitwise Sorting:**
-  - Implement Radix Sort using bitwise operations to process numbers digit by digit.
-- **Initial Testing:**
-  - Test the implementation with smaller datasets to verify correctness.
-
-#### Day 6: Optimization Techniques
-
-- **Operation Minimization:**
-  - Combine operations where possible (e.g., use `rr` instead of separate `ra` and `rb`).
-- **Efficient Rotations:**
-  - Optimize rotations to reduce the total number of operations.
-- **Benchmarking:**
-  - Compare performance against known standards and refine the algorithm accordingly.
-
-#### Day 7: Advanced Algorithm Integration
-
-- **Turk Algorithm Exploration:**
-  - Research and consider implementing the Turk Algorithm, which involves pushing elements to Stack B in a specific order to facilitate efficient sorting upon retrieval.
-- **Chunking Method:**
-  - Divide the stack into smaller segments or "chunks," sort each chunk individually, and then merge them. This technique can optimize sorting for larger datasets.
-- **Testing and Validation:**
-  - Apply these algorithms to various datasets to assess performance and correctness.
-
-### Day 8: Bonus Features & Final Refinements
-
-- **Checker Program:**
-  - Develop a `checker` program to validate the correctness of the sorting sequence.
-- **Memory Management:**
-  - Use tools like Valgrind to ensure there are no memory leaks.
-- **Code Review:**
-  - Conduct a thorough review to ensure adherence to the 42 Norm and optimize code readability.
-
-### Days 9–10: Final Testing & Evaluation Preparation
-
-- **Comprehensive Testing:**
-  - Test the program with a wide range of datasets, including edge cases.
-- **Performance Analysis:**
-  - Analyze the number of operations used and strive for further optimization.
-- **Evaluation Readiness:**
-  - Prepare for peer evaluation by documenting the code and being ready to explain the implemented algorithms and design choices.
-
----
-
-## Algorithm Choices & Complexities
-
-- **Small Datasets (≤5 elements):**
-  - Utilize custom minimal-move logic tailored to the specific number of elements.
-- **Large Datasets (100–500 elements):**
-  - Implement Radix Sort for its efficiency and scalability.
-  - Explore the Turk Algorithm and Chunking Method as alternative strategies to potentially reduce the number of operations.
-
-| Algorithm      | Time Complexity    | Space Complexity | Usage               |
-|----------------|--------------------|------------------|---------------------|
-| Custom Logic   | O(1)               | O(1)             | ≤5 elements         |
-| Radix Sort     | O(n * k)           | O(n + k)         | 100–500 elements    |
-| Turk Algorithm | Varies             | Varies           | Alternative strategy|
-| Chunking Method| Varies             | Varies           | Alternative strategy|
-
----
-
-## Core Concepts
-
-- **Stack Manipulation:**
-  - Mastery of stack operations and their combinations is crucial for efficient sorting.
-- **Memory Management:**
-  - Ensure dynamic memory allocations are handled properly to prevent leaks.
-- **Algorithm Optimization:**
-  - Focus on reducing the total number of operations through strategic planning and implementation.
-
----
-
-## Potential Challenges
-
-- **Complex Input Handling:**
-  - Managing various input formats and ensuring robust error detection.
-- **Operation Sequencing:**
-  - Determining the optimal sequence of operations to achieve sorting with minimal moves.
-- **Algorithm Selection:**
-  - Choosing the most suitable algorithm based on dataset size and characteristics.
-
-**Debugging Tips:**
-
-- **Unit Testing:**
-  - Test individual functions and operations to isolate issues.
-- **Memory Checks:**
-  - Regularly use tools like Valgrind to detect and address memory leaks.
-- **Visualization:**
-  - Employ visualization tools to understand the behavior of your sorting algorithm.
-
----
-
-## Useful Resources
-
-- **Valgrind:**
-  - Tool for detecting memory leaks and profiling memory usage.
-- **Push_Swap Visualizers:**
-  - Graphical tools to visualize stack operations and sorting processes.
-- **Community Tutorials:**
-  - Articles and tutorials on Radix Sort, Turk Algorithm, and other relevant strategies.
-
----
+© 2025 anpayot | 42 Lausanne
