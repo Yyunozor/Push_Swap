@@ -6,7 +6,7 @@
 #    By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/01 10:00:00 by yyuno             #+#    #+#              #
-#    Updated: 2025/05/08 12:34:52 by anpayot          ###   ########.fr        #
+#    Updated: 2025/05/09 01:26:39 by anpayot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ SRCS_DIR = srcs
 UTILS_DIR = $(SRCS_DIR)/utils
 OPERATORS_DIR = $(SRCS_DIR)/operators
 PARSING_DIR = $(SRCS_DIR)/parsers
-ALGORITHMS_DIR = $(SRCS_DIR)/algos
+SORTING_DIR = $(SRCS_DIR)/sorting
 DEBUG_DIR = debug
 
 # ===== EXTERNAL LIBRARIES =====
@@ -45,11 +45,12 @@ SRCS = $(SRCS_DIR)/main.c \
        $(PARSING_DIR)/parse_args.c \
        $(PARSING_DIR)/parse_utils.c \
        $(UTILS_DIR)/stack_utils.c \
-	   $(ALGORITHMS_DIR)/sort_small.c \
-	   $(ALGORITHMS_DIR)/sort_medium.c \
-	   $(ALGORITHMS_DIR)/sort_large.c \
-	   $(ALGORITHMS_DIR)/sorting_utils.c \
-	   $(ALGORITHMS_DIR)/sorting_utils2.c
+	   $(SORTING_DIR)/sort_small.c \
+	   $(SORTING_DIR)/sort_medium.c \
+	   $(SORTING_DIR)/sort_large.c \
+	   $(SORTING_DIR)/radix_sort.c \
+	   $(SORTING_DIR)/sorting_utils.c \
+	   $(SORTING_DIR)/sorting_utils2.c
 
 # Object files derived from sources
 OBJS = $(SRCS:.c=.o)

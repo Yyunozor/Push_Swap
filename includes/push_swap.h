@@ -13,18 +13,14 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include <stdlib.h>
+# include "stack.h"
 # include "../ft_printf2/includes/ft_printf.h"
+# include "func_comm.h"
+
 # include <limits.h>
 
-typedef struct s_stack
-{
-	int	*data;
-	int	top;
-	int	capacity;
-}			t_stack;
-
 // Stack Operations
+
 void	sa_sb(t_stack *stack, char stack_letter);
 void	ss(t_stack *stack_a, t_stack *stack_b);
 void	pa_pb(t_stack *stack_src, t_stack *stack_dst, char stack_letter);
@@ -34,13 +30,15 @@ void	rra_rrb(t_stack *stack, char stack_letter);
 void	rrr(t_stack *stack_a, t_stack *stack_b);
 
 // Stack Utilities
+
 t_stack	*stack_init(int capacity);
 void	free_stack(t_stack **stack);
 int		is_sorted(t_stack *stack);
-void	print_stack(t_stack *stack, char name);
-void	visualize_stacks(t_stack *stack_a, t_stack *stack_b);
+
+
 
 // Parse Arguments
+
 t_stack	*parse_args(int ac, char **av);
 int		is_valid_int(char *str);
 int		has_duplicates(int *arr, int size);
@@ -51,12 +49,14 @@ t_stack	*load_stack(char **args, int total_count);
 int		num_checker(int ac, char **av);
 
 // Sorting Algorithms
+
 void	sort_3(t_stack *stack);
 void	sort_5(t_stack *stack_a, t_stack *stack_b);
 void	sort_medium(t_stack *stack_a, t_stack *stack_b);
 void	sort_large(t_stack *stack_a, t_stack *stack_b);
 
 // Sorting Utilities
+
 int		*copy_stack(t_stack *stack, int size);
 int		min_finder(t_stack *stack);
 int		max_finder(t_stack *stack);
@@ -70,5 +70,7 @@ void	bubble_sort_arr(int *arr, int size);
 // int		debug_is_sorted(t_stack *stack);
 // t_stack	*create_random_stack(int size, int min, int max);
 // void	generate_test_arguments(int size, int min, int max);
+// void	visualize_stacks(t_stack *stack_a, t_stack *stack_b);
+// void	print_stack(t_stack *stack, char name);
 
 #endif

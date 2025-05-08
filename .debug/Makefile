@@ -6,7 +6,7 @@
 #    By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/02 15:40:21 by anpayot           #+#    #+#              #
-#    Updated: 2025/05/05 14:35:56 by anpayot          ###   ########.fr        #
+#    Updated: 2025/05/09 01:18:24 by anpayot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,7 @@ SRCS = $(DEBUG_DIR)/debug_main.c \
 	  $(ALGOS_DIR)/sort_small.c \
 	  $(ALGOS_DIR)/sort_medium.c \
 	  $(ALGOS_DIR)/sort_large.c \
+	  $(ALGOS_DIR)/radix_sort.c \
 	  $(ALGOS_DIR)/sorting_utils.c \
 	  $(ALGOS_DIR)/sorting_utils2.c
 

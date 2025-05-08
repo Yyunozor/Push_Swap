@@ -6,53 +6,102 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 03:15:30 by anpayot           #+#    #+#             */
-/*   Updated: 2025/05/03 00:24:57 by anpayot          ###   ########.fr       */
+/*   Updated: 2025/05/09 01:15:23 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
-t_stack *parse_args(int ac, char **av)
+/**
+ * @brief Handles a single string argument that contains spaces
+ *
+ * Splits a space-separated string into an array of arguments and counts them.
+ *
+ * @param arg String containing space-separated values
+ * @param count Pointer to store the count of arguments after splitting
+ * @return Array of strings representing split arguments, or NULL on error
+ */
+static char	**handle_single_arg(char *arg, int *count)
 {
-	char    **args;
-	int     total_count;
-	t_stack *stack;
-	
-	if (ac < 2)
+	char	**args;
+
+	args = ft_split(arg, ' ');
+	if (!args)
 		return (NULL);
-	
-	// Handle both single string with spaces and multiple arguments
+	*count = 0;
+	while (args[*count])
+		(*count)++;
+	return (args);
+}
+
+/**
+ * @brief Extracts arguments from command line parameters
+ *
+ * Handles both space-separated single argument and multiple arguments cases.
+ *
+ * @param ac Argument count
+ * @param av Array of argument strings
+ * @param total_count Pointer to store the total count of arguments
+ * @return Array of argument strings, or NULL on error
+ */
+static char	**get_arguments(int ac, char **av, int *total_count)
+{
+	char	**args;
+
 	if (ac == 2 && ft_strchr(av[1], ' '))
 	{
-		// Single argument with spaces (e.g., "./push_swap "1 2 3"")
-		args = ft_split(av[1], ' ');
+		args = handle_single_arg(av[1], total_count);
 		if (!args)
 			return (NULL);
-		total_count = 0;
-		while (args[total_count])
-			total_count++;
 	}
 	else
 	{
-		// Multiple individual arguments (e.g., "./push_swap 1 2 3")
-		total_count = ac - 1;
-		args = av + 1;  // Skip program name
+		*total_count = ac - 1;
+		args = av + 1;
 	}
-	
-	// Validate numbers
+	return (args);
+}
+
+/**
+ * @brief Handles memory cleanup and returns the stack
+ *
+ * Frees memory allocated for arguments if needed before returning the stack.
+ *
+ * @param ac Argument count
+ * @param args Array of argument strings to free (if applicable)
+ * @param stack Stack to return
+ * @return The input stack pointer
+ */
+static t_stack	*cleanup_and_return(int ac, char **args, t_stack *stack)
+{
+	if (ac == 2 && args != NULL)
+		free_string_array(args);
+	return (stack);
+}
+
+t_stack	*parse_args(int ac, char **av)
+{
+	char	**args;
+	int		total_count;
+	t_stack	*stack;
+	int		is_single_arg;
+
+	if (ac < 2)
+		return (NULL);
+	is_single_arg = (ac == 2 && ft_strchr(av[1], ' '));
+	args = get_arguments(ac, av, &total_count);
+	if (!args)
+		return (NULL);
 	if (!num_checker(total_count, args))
 	{
-		if (ac == 2 && ft_strchr(av[1], ' '))
-			free_string_array(args);
-		return (NULL);
+		if (is_single_arg)
+			return (cleanup_and_return(ac, args, NULL));
+		else
+			return (cleanup_and_return(ac, NULL, NULL));
 	}
-	
-	// Load into stack
 	stack = load_stack(args, total_count);
-	
-	// Clean up if we allocated memory for args
-	if (ac == 2 && ft_strchr(av[1], ' '))
-		free_string_array(args);
-	
-	return (stack);
+	if (is_single_arg)
+		return (cleanup_and_return(ac, args, stack));
+	else
+		return (cleanup_and_return(ac, NULL, stack));
 }

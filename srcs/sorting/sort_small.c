@@ -6,7 +6,7 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 15:47:22 by anpayot           #+#    #+#             */
-/*   Updated: 2025/05/08 12:34:52 by anpayot          ###   ########.fr       */
+/*   Updated: 2025/05/09 01:04:43 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,7 @@ static void	push_min_elements(t_stack *stack_a, t_stack *stack_b, int count)
 {
 	while (count > 0)
 	{
-		// Find the smallest element and move to top of A
 		min_to_top(stack_a, 'a');
-		// Push to B
 		pa_pb(stack_a, stack_b, 'b');
 		count--;
 	}
@@ -82,11 +80,8 @@ void	sort_5(t_stack *stack_a, t_stack *stack_b)
 		sort_3(stack_a);
 		return ;
 	}
-	// For size 4 or 5, push min elements to B
 	push_min_elements(stack_a, stack_b, size - 3);
-	// Sort the remaining 3 elements in A
 	sort_3(stack_a);
-	// Push all elements back from B to A
 	while (stack_b->top > 0)
 		pa_pb(stack_b, stack_a, 'a');
 }

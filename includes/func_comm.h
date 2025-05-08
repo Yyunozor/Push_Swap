@@ -4,9 +4,9 @@
 /*   func_comm.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
+/*                                                +#+#+#+#+#+   */
 /*   Created: 2025/04/27 12:20:19 by anpayot           #+#    #+#             */
-/*   Updated: 2025/05/08 12:36:47 by anpayot          ###   ########.fr       */
+/*   Updated: 2025/05/09 01:15:23 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,12 @@ int		num_checker(int ac, char **av);
  * @brief Parses command line arguments into a stack
  *
  * Creates a new stack and fills it with the integer values
- * from the command line arguments.
+ * from the command line arguments. Handles both space-separated
+ * single arguments and multiple arguments. Validates all inputs
+ * before creating the stack.
  *
- * @param ac Argument count (excluding program name)
- * @param av Arguments array (excluding program name)
+ * @param ac Argument count (including program name)
+ * @param av Arguments array (including program name)
  * @return A pointer to the initialized stack, or NULL on error
  */
 t_stack	*parse_args(int ac, char **av);
@@ -304,7 +306,7 @@ void	sort_large(t_stack *stack_a, t_stack *stack_b);
  * @param size The number of elements to copy
  * @return A pointer to the newly allocated array, or NULL if allocation fails
  */
-int	*copy_stack(t_stack *stack, int size);
+int *copy_stack(t_stack *stack, int size);
 
 /**
  * @brief Finds the position of a specific value in a stack
@@ -367,5 +369,35 @@ int	is_valid_int(char *str);
  * @return 1 if duplicates are found, 0 if all values are unique
  */
 int	has_duplicates(int *arr, int size);
+
+/**
+ * @brief Counts the number of bits needed to represent a number
+ *
+ * Determines the minimum number of bits required to represent
+ * the provided integer in binary format. This is used by the
+ * radix sort algorithm to determine how many bit positions
+ * need to be processed.
+ *
+ * @param num The number to analyze
+ * @return The number of bits required
+ */
+int	count_bits(int num);
+
+/**
+ * @brief Performs a binary radix sort on the stack
+ *
+ * This is the core implementation of the radix sort algorithm.
+ * It sorts numbers by processing them bit by bit, from the least
+ * significant bit (LSB) to the most significant bit (MSB).
+ * For each bit position, it distributes elements between stacks
+ * based on whether the bit is 0 or 1, and then recombines them.
+ *
+ * @param stack_a First stack
+ * @param stack_b Second stack
+ * @param size Number of elements to sort
+ * @param max_bits Maximum number of bits to process
+ */
+void	radix_sort_bits(t_stack *stack_a, t_stack *stack_b,
+						int size, int max_bits);
 
 #endif
