@@ -6,7 +6,7 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 20:30:00 by anpayot           #+#    #+#             */
-/*   Updated: 2025/05/09 01:53:19 by anpayot          ###   ########.fr       */
+/*   Updated: 2025/05/09 10:28:31 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ int	process_space_arg(char *arg, char **result, int index)
 		result[index] = ft_strdup(split[j]);
 		if (!result[index])
 		{
-			free_string_array(split);
+			free_str_array(split);
 			return (-1);
 		}
 		index++;
 		j++;
 	}
-	free_string_array(split);
+	free_str_array(split);
 	return (index);
 }
 
@@ -55,7 +55,7 @@ int	count_args(int ac, char **av)
 			j = 0;
 			while (split[j++])
 				total++;
-			free_string_array(split);
+			free_str_array(split);
 		}
 		else
 			total++;

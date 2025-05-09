@@ -219,7 +219,7 @@ int		count_args(int ac, char **av);
  *
  * @param arr Array of strings to free
  */
-void	free_string_array(char **arr);
+void	free_str_array(char **arr);
 
 /**
  * @brief Process a single argument that contains spaces

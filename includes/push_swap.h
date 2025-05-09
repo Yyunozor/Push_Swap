@@ -44,7 +44,7 @@ int		is_valid_int(char *str);
 int		has_duplicates(int *arr, int size);
 int		process_space_arg(char *arg, char **result, int index);
 int		count_args(int ac, char **av);
-void	free_string_array(char **arr);
+void	free_str_array(char **arr);
 t_stack	*load_stack(char **args, int total_count);
 int		num_checker(int ac, char **av);
 
