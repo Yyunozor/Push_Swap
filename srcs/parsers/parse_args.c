@@ -6,7 +6,7 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 03:15:30 by anpayot           #+#    #+#             */
-/*   Updated: 2025/05/09 10:29:45 by anpayot          ###   ########.fr       */
+/*   Updated: 2025/05/10 15:27:54 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,7 @@ static char	**extract_args(int ac, char **av, int *total_count)
 static t_stack	*freeturn(int ac, char **args, t_stack *stack)
 {
 	if (ac == 2 && args != NULL)
-		free_sgtr_array(args);
-	i
+		free_str_array(args);
 	return (stack);
 }
 
