@@ -75,7 +75,8 @@ static char	**extract_args(int ac, char **av, int *total_count)
 static t_stack	*freeturn(int ac, char **args, t_stack *stack)
 {
 	if (ac == 2 && args != NULL)
-		free_str_array(args);
+		free_sgtr_array(args);
+	i
 	return (stack);
 }
 
