@@ -6,7 +6,7 @@
 /*   By: anpayot <anpayot@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 15:01:12 by anpayot           #+#    #+#             */
-/*   Updated: 2025/05/09 00:54:43 by anpayot          ###   ########.fr       */
+/*   Updated: 2025/05/09 13:35:48 by anpayot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void	sorting_selector(t_stack *stack_a, t_stack *stack_b)
 		sort_3(stack_a);
 	else if (size <= 5)
 		sort_5(stack_a, stack_b);
-	else if (size <= 100)
+	else if (size < 100)
 		sort_medium(stack_a, stack_b);
 	else
 		sort_large(stack_a, stack_b);

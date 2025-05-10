@@ -102,11 +102,6 @@ void	sort_large(t_stack *stack_a, t_stack *stack_b)
 
 	if (is_sorted(stack_a))
 		return ;
-	if (stack_a->top <= 100)
-	{
-		sort_medium(stack_a, stack_b);
-		return ;
-	}
 	size = stack_a->top;
 	normalize_stack(stack_a, size);
 	max = size - 1;
